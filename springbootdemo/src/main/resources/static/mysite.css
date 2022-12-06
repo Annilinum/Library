@@ -1,4 +1,7 @@
-table {
+h2{
+    text-align: center;
+    font-family: sans-serif ;
+}table {
     margin: auto;
     text-align: center;
     width: 60%;
@@ -13,7 +16,7 @@ td {
 th {
     font-weight: bold;
     padding: 5px;
-    background: #efefef;
+    background: darkgray;
     border: 1px solid #dddddd;
 }
 button {

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Книги</title>
-    <link rel="stylesheet" th:href="@{mysite.css}">
+    <link rel="stylesheet" th:href="@{../mysite.css}">
 </head>
 <body>
 <h2>Книги</h2>
@@ -24,12 +24,12 @@
         <td>
             <a th:href="@{user-books/{id}(id=${book.id})}">Смотреть (<a th:text="${bookCount}"></a>)</a>
         </td>
-        <td><a th:href="@{book-delete/{id}(id=${book.id})}">Delete</a></td>
+        <td><a th:href="@{book-delete/{id}(id=${book.id})}">Удалить</a></td>
     </tr>
     </tbody>
 </table>
 </div>
-<p><a href="/books-list">Вернуться к списку пользователей</a></p>
+<p style="text-align: center"><a href="/books-list">Вернуться к списку пользователей</a></p>
 
 </body>
 </html>

@@ -23,11 +23,12 @@ public class BookController {
     public String findAll(Model model){
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
-        return "books-list";
+        return "user-books";
     }
     @GetMapping("/book-delete/{id}")
     public String deleteBook(@PathVariable("id") Long id) {
         bookService.deleteById(id);
         return "redirect:/books";
     }
+
 }
