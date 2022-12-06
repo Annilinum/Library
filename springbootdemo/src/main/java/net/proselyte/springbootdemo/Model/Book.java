@@ -18,6 +18,7 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "person-id")
-    private String personId;
+    @ManyToOne(fetch = FetchType.EAGER, cascade = {CascadeType.MERGE, CascadeType.PERSIST})
+    @JoinColumn(name="person_id", nullable = false)
+    private User user;
 }
