@@ -9,16 +9,16 @@
 <div th:switch="${users}">
     <h2 th:case="null">No users found!</h2>
     <div th:case="*">
-        <h2>Пользователи</h2>
+        <h2 align="center">Пользователи</h2>
         <table class="myclass">
             <thead>
             <tr>
                 <th>ИД</th>
                 <th>Имя</th>
                 <th>Фамилия</th>
+                <th></th>
+                <th></th>
                 <th>Книги</th>
-                <th></th>
-                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -26,16 +26,17 @@
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
+
+                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Удалить</a></td>
+                <td><a th:href="@{user-update/{id}(id=${user.id})}">Редактировать</a></td>
                 <td>
                     <a th:href="@{user-books/{id}(id=${user.id})}">Смотреть (<span th:text="${bookCount}"></span>)</a>
                 </td>
-                <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
-                <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/user-create">Cоздать пользователя</a></p>
+    <p align="center"><a href="/user-create">Создать пользователя</a></p>
 </div>
 </body>
 </html>

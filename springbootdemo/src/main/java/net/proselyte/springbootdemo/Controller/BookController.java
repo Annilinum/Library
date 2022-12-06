@@ -25,19 +25,8 @@ public class BookController {
         model.addAttribute("books", books);
         return "books-list";
     }
-
-    @GetMapping("/book-create")
-    public String createUserForm(User user) {
-        return "book-create";
-    }
-
-    @PostMapping("/book-create")
-    public String createUser(Book book) {
-        bookService.saveBook(book);
-        return "redirect:/users";
-    }
     @GetMapping("/book-delete/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public String deleteBook(@PathVariable("id") Long id) {
         bookService.deleteById(id);
         return "redirect:/books";
     }
