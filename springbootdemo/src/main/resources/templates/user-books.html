@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Книги</title>
+</head>
+<body>
+<h2>Книги</h2>
+<table style="border: black 1px solid">
+    <thead>
+    <tr>
+        <th>Название</th>
+        <th>Автор</th>
+        <th>Всего X шт.</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="book : ${books}">
+        <td th:text="${book.id}"></td>
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+
+        <td>
+            <a th:href="@{user-books/{id}(id=${book.id})}">Смотреть (<a th:text="${bookCount}"></a>)</a>
+        </td>
+        <td><a th:href="@{book-delete/{id}(id=${book.id})}">Delete</a></td>
+    </tr>
+    </tbody>
+</table>
+</div>
+<p><a href="/books-list">Вернуться к списку пользователей</a></p>
+
+</body>
+</html>

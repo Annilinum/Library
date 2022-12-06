@@ -1,20 +1,24 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Users</title>
+    <title>Пользователи</title>
+    <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
 <div th:switch="${users}">
     <h2 th:case="null">No users found!</h2>
     <div th:case="*">
-        <h2>Users</h2>
-        <table>
+        <h2>Пользователи</h2>
+        <table class="myclass">
             <thead>
             <tr>
-                <th>Id</th>
-                <th>First name</th>
-                <th>Last name</th>
+                <th>ИД</th>
+                <th>Имя</th>
+                <th>Фамилия</th>
+                <th>Книги</th>
+                <th></th>
+                <th></th>
             </tr>
             </thead>
             <tbody>
@@ -22,13 +26,16 @@
                 <td th:text="${user.id}"></td>
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
+                <td>
+                    <a th:href="@{user-books/{id}(id=${user.id})}">Смотреть (<span th:text="${bookCount}"></span>)</a>
+                </td>
                 <td><a th:href="@{user-update/{id}(id=${user.id})}">Edit</a></td>
                 <td><a th:href="@{user-delete/{id}(id=${user.id})}">Delete</a></td>
             </tr>
             </tbody>
         </table>
     </div>
-    <p><a href="/user-create">Create user</a></p>
+    <p><a href="/user-create">Cоздать пользователя</a></p>
 </div>
 </body>
 </html>

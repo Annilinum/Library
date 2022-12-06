@@ -2,7 +2,6 @@ package net.proselyte.springbootdemo.Service;
 
 import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User savaUser(User user) {
+    public User saveUser(User user) {
         return userRepository.save(user);
     }
 

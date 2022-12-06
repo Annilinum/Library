@@ -22,6 +22,7 @@ public class UserController {
     public String findAll(Model model) {
         List<User> users = userService.findAll();
         model.addAttribute("users", users);
+        model.addAttribute("bookCount", 7);
         return "user-list";
     }
 
@@ -32,7 +33,7 @@ public class UserController {
 
     @PostMapping("/user-create")
     public String createUser(User user) {
-        userService.savaUser(user);
+        userService.saveUser(user);
         return "redirect:/users";
     }
 
@@ -42,7 +43,7 @@ public class UserController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users-update/{id}")
+    @GetMapping("/user-update/{id}")
     public String updateUserForm(@PathVariable("id") Long id, Model model) {
         User user = userService.findById(id);
         model.addAttribute("user", user);
@@ -51,7 +52,13 @@ public class UserController {
 
     @PostMapping("/user-update")
     public String updateUser(User user) {
-        userService.savaUser(user);
+        userService.saveUser(user);
         return "redirect:/users";
     }
+
+    @GetMapping("/user-books/{id}")
+    public String getUserBooks(@PathVariable ("id") Long id){
+       return "/user-books";
+    }
+
 }
