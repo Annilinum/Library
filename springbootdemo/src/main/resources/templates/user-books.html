@@ -6,30 +6,38 @@
     <link rel="stylesheet" th:href="@{../mysite.css}">
 </head>
 <body>
+<div th:switch="${books}">
+    <h2 th:case="null">No books found!</h2>
+    <div th:case="*">
 <h2>Книги</h2>
 <table>
     <thead>
     <tr>
         <th>Название</th>
         <th>Автор</th>
-        <th>Всего X шт.</th>
+        <th>Всего <span th:text="${books.size()}"></span> шт.</th>
+
+    </tr>
+    <td></td>
+    <td></td>
+    <td><a>Добавить</a></td>
+    <tr>
+
     </tr>
     </thead>
     <tbody>
     <tr th:each="book : ${books}">
-        <td th:text="${book.id}"></td>
+
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
-
-        <td>
-            <a th:href="@{user-books/{id}(id=${book.id})}">Смотреть (<a th:text="${bookCount}"></a>)</a>
-        </td>
         <td><a th:href="@{book-delete/{id}(id=${book.id})}">Удалить</a></td>
+
     </tr>
     </tbody>
 </table>
 </div>
-<p style="text-align: center"><a href="/books-list">Вернуться к списку пользователей</a></p>
+<p style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
 
+</div>
 </body>
 </html>
