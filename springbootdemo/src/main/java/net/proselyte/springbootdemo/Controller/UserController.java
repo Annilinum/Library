@@ -59,7 +59,8 @@ public class UserController {
     @GetMapping("/user-books/{id}")
     public String getUserBooks(@PathVariable ("id") Long id, Model model){
         model.addAttribute("books", userService.getBookByUserId(id));
-        return "/user-books";
+        model.addAttribute("userId", id);
+        return "/html-user-books";
     }
 
 }

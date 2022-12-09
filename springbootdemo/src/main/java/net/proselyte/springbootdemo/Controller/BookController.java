@@ -25,10 +25,17 @@ public class BookController {
         model.addAttribute("books", books);
         return "user-books";
     }
-    @GetMapping("/book-delete/{id}")
-    public String deleteBook(@PathVariable("id") Long id) {
-        bookService.deleteById(id);
-        return "redirect:/books";
+
+    @GetMapping("/book-delete/{userId}/{id}")
+    public String deleteBook(@PathVariable("id") Long bookId, @PathVariable("userId") Long userId) {
+        bookService.deleteById(bookId);
+        return "redirect:/user-books/" + userId;
+    }
+
+    @PostMapping("/create-book")
+    public String createBook(String title, String author, Long userId) {
+        bookService.saveBook(title, author, userId);
+        return "redirect:/user-books/" + userId;
     }
 
 }

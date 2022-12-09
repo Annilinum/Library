@@ -1,7 +1,9 @@
 package net.proselyte.springbootdemo.Service;
 
 import net.proselyte.springbootdemo.Model.Book;
+import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Repository.BookRepository;
+import net.proselyte.springbootdemo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -10,10 +12,12 @@ import java.util.List;
 @Service
 public class BookService {
     private final BookRepository bookRepository;
+    private final UserRepository userRepository;
 
     @Autowired
-    public BookService(BookRepository bookRepository) {
+    public BookService(BookRepository bookRepository, UserRepository userRepository) {
         this.bookRepository = bookRepository;
+        this.userRepository = userRepository;
     }
 
     public Book findById(Long id) {
@@ -30,5 +34,14 @@ public class BookService {
 
     public void deleteById(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public void saveBook(String title, String author, Long userId) {
+        User user = userRepository.getReferenceById(userId);
+        Book book = new Book();
+        book.setUser(user);
+        book.setTitle(title);
+        book.setAuthor(author);
+        saveBook(book);
     }
 }
