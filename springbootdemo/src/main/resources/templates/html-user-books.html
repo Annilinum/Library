@@ -22,8 +22,9 @@
                 <form action="#" th:action="@{/create-book}" method="post">
                     <td><input type="text" name="title" placeholder="Введи название"></td>
                     <td><input type="text" name="author" placeholder="Введи автора"></td>
-                    <td><input type="hidden" name="userId" th:value="${userId}"></td>
                     <td><input type="submit" value="Добавить"></td>
+                    <td><input type="hidden" name="userId" th:value="${userId}"></td>
+
                 </form>
 
             </tr>

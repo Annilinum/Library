@@ -1,7 +1,6 @@
 package net.proselyte.springbootdemo.Controller;
 
 import net.proselyte.springbootdemo.Model.Book;
-import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -23,7 +22,7 @@ public class BookController {
     public String findBooks(Model model){
         List<Book> books = bookService.findAll();
         model.addAttribute("books", books);
-        return "user-books";
+        return "/books";
     }
 
     @GetMapping("/book-delete/{userId}/{id}")
