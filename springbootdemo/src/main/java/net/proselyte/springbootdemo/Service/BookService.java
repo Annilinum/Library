@@ -44,4 +44,11 @@ public class BookService {
         book.setAuthor(author);
         saveBook(book);
     }
+
+    public void saveBook(String title, String author) {
+        Book book = new Book();
+        book.setTitle(title);
+        book.setAuthor(author);
+        saveBook(book);
+    }
 }
