@@ -10,6 +10,19 @@
     <h2 th:case="null">No books found!</h2>
     <div th:case="*">
         <h2>Книги</h2>
+
+        <form style="text-align: center" action="#" th:action="@{/create-book}" method="post">
+            <select>
+                <option value="">Select</option>
+                <option th:each="book : ${books}"
+                        th:value="${book.title}"
+                        th:text="${book.title}">
+                </option>
+            </select>
+            <input type="hidden" name="userId" th:value="${userId}">
+            <input type="submit" value="Записать">
+        </form>
+        <br>
         <table>
             <thead>
             <tr>
@@ -18,16 +31,7 @@
                 <th>Всего <span th:text="${books.size()}"></span> шт.</th>
 
             </tr>
-            <tr>
 
-                <form action="#" th:action="@{/create-book}" method="post">
-                    <td><input type="text" name="title" placeholder="Введи название"></td>
-                    <td><input type="text" name="author" placeholder="Введи автора"></td>
-                    <td><input type="submit" value="Добавить"></td>
-                    <input type="hidden" name="userId" th:value="${userId}">
-                </form>
-
-            </tr>
             </thead>
             <tbody>
             <tr th:each="book : ${books}">
