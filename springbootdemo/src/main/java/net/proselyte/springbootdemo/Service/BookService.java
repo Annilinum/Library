@@ -21,20 +21,22 @@ public class BookService {
         this.userRepository = userRepository;
     }
 
-    public Book findById(Long id) {
-        return bookRepository.getOne(id);
-    }
-
     public List<Book> findAll() {
         return bookRepository.findAll();
     }
 
-    public Book saveBook(Book book) {
-        return bookRepository.save(book);
+    public void saveBook(Book book) {
+        bookRepository.save(book);
     }
 
-    public void deleteById(Long id) {
+    public void deleteBook(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public void deleteUserFromBook(Long bookId) {
+       Book book = bookRepository.getOne(bookId);
+       book.setUser(null);
+       saveBook(book);
     }
 
     public void saveBook(String title, String author, long userId) {
