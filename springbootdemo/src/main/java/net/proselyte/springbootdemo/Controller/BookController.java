@@ -36,7 +36,7 @@ public class BookController {
         bookService.saveBook(title, author, userId);
         return "redirect:/user-books/" + userId;
     }
-    @PostMapping("/create-newbook")
+    @PostMapping("/create-newBook")
     public String createBook(String title, String author) {
         bookService.saveBook(title, author);
         return "redirect:/books";

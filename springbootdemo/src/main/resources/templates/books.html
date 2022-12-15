@@ -11,10 +11,10 @@
     <div th:case="*">
         <h2>Библиотека</h2>
 
-        <form style="text-align: center"  action="#" th:action="@{/create-newbook}" method="post">
-            <td><input type="text" name="title" placeholder="Введи название"></td>
-            <td><input type="text" name="author" placeholder="Введи автора"></td>
-            <td><input type="submit" value="Создать книгу"></td>
+        <form style="text-align: center"  action="#" th:action="@{/create-newBook}" method="post">
+            <input type="text" name="title" placeholder="Введи название">
+            <input type="text" name="author" placeholder="Введи автора">
+            <input type="submit" value="Создать книгу">
         </form>
         <br>
         <table>

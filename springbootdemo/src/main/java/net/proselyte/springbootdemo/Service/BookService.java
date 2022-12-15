@@ -1,5 +1,6 @@
 package net.proselyte.springbootdemo.Service;
 
+import net.proselyte.springbootdemo.Controller.BadRequestException;
 import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Repository.BookRepository;
@@ -36,7 +37,10 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-    public void saveBook(String title, String author, Long userId) {
+    public void saveBook(String title, String author, long userId) {
+        if (title.isBlank()) throw new BadRequestException();
+        if (author.isBlank()) throw new BadRequestException();
+
         User user = userRepository.getReferenceById(userId);
         Book book = new Book();
         book.setUser(user);
@@ -46,6 +50,9 @@ public class BookService {
     }
 
     public void saveBook(String title, String author) {
+        if (title.isBlank()) throw new BadRequestException();
+        if (author.isBlank()) throw new BadRequestException();
+
         Book book = new Book();
         book.setTitle(title);
         book.setAuthor(author);
