@@ -1,7 +1,7 @@
 package net.proselyte.springbootdemo.Controller;
 
-import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Model.User;
+import net.proselyte.springbootdemo.Service.BookService;
 import net.proselyte.springbootdemo.Service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,9 +14,11 @@ import java.util.List;
 @Controller
 public class UserController {
     private final UserService userService;
+    private final BookService bookService;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, BookService bookService) {
         this.userService = userService;
+        this.bookService = bookService;
     }
 
     @GetMapping("/users")
@@ -60,6 +62,7 @@ public class UserController {
     public String getUserBooks(@PathVariable ("id") Long id, Model model){
         model.addAttribute("books", userService.getBookByUserId(id));
         model.addAttribute("userId", id);
+        model.addAttribute("freeBooks", bookService.findFreeBooks());
         return "/html-user-books";
     }
 

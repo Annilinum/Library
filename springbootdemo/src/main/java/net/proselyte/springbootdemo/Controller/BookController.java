@@ -25,6 +25,12 @@ public class BookController {
         model.addAttribute("books", books);
         return "/books";
     }
+    @GetMapping("/test")
+    public String findFreeBooks(Model model) {
+        List<Book> freeBooks = bookService.findFreeBooks();
+        model.addAttribute("freeBooks", freeBooks);
+        return "/books";
+    }
 
     @GetMapping("/books/{bookId}")
     public String deleteBook(@PathVariable("bookId") Long bookId) {

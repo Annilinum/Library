@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -25,6 +26,15 @@ public class BookService {
         return bookRepository.findAll();
     }
 
+    public List<Book> findFreeBooks() {
+
+        // for (Book bk : freeBooks){
+        //     if(bk.getUser() != null)
+        //         freeBooks.add(bk);
+        // }
+        return findAll().stream().filter(book -> book.getUser() == null).collect(Collectors.toList());
+    }
+
     public void saveBook(Book book) {
         bookRepository.save(book);
     }
@@ -34,9 +44,9 @@ public class BookService {
     }
 
     public void deleteUserFromBook(Long bookId) {
-       Book book = bookRepository.getOne(bookId);
-       book.setUser(null);
-       saveBook(book);
+        Book book = bookRepository.getOne(bookId);
+        book.setUser(null);
+        saveBook(book);
     }
 
     public void saveBook(String title, String author, long userId) {

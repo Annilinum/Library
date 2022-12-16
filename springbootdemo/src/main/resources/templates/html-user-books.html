@@ -14,7 +14,7 @@
         <form style="text-align: center" action="#" th:action="@{/create-book}" method="post">
             <select>
                 <option value="">Select</option>
-                <option th:each="book : ${books}"
+                <option th:each="book : ${freeBooks}"
                         th:value="${book.title}"
                         th:text="${book.title}">
                 </option>
