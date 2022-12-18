@@ -12,10 +12,10 @@
         <h2>Книги</h2>
 
         <form style="text-align: center" action="#" th:action="@{/create-book}" method="post">
-            <select>
-                <option value="">Select</option>
+            <select name="bookId">
+                <option value="">Выбрать книгу</option>
                 <option th:each="book : ${freeBooks}"
-                        th:value="${book.title}"
+                        th:value="${book.id}"
                         th:text="${book.title}">
                 </option>
             </select>

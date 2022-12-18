@@ -45,8 +45,8 @@ public class BookController {
     }
 
     @PostMapping("/create-book")
-    public String createBook(String title, String author, Long userId) {
-        bookService.saveBook(title, author, userId);
+    public String createBook(Long bookId, Long userId) {
+        bookService.saveBook(bookId, userId);
         return "redirect:/user-books/" + userId;
     }
 
