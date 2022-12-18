@@ -27,7 +27,6 @@
 
             </tr>
             <tr></tr>
-
             </thead>
             <tbody>
             <tr th:each="book : ${books}">
@@ -40,8 +39,25 @@
             </tbody>
         </table>
     </div>
-    <p style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
 
+    <table>
+        <tr>
+            <th><a th:href="@{/books?pageNumber=__${prevPage}__}"><</a></th>
+            <th><a href="/books?pageNumber=0">1</a></th>
+            <th><a href="/books?pageNumber=1">2</a></th>
+            <th><a href="/books?pageNumber=2">3</a></th>
+            <th><a href="/books">></a></th>
+        </tr>
+
+
+<!--        <tr>
+            <th><a href="/books?pageNumber={prevPage}"><</a></th>
+            <th th:each="nuber : ${showedNumbers}"><a href="/books?pageNumber=pageNumber">1</a></th>
+            <th><a a href="/books?pageNumber={nextPage}">3</a></th>
+            <th><a href="/books">></a></th>
+        </tr>-->
+    </table>
+    <p style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
 </div>
 </body>
 </html>

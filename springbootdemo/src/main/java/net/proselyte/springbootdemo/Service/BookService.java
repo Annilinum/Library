@@ -6,6 +6,7 @@ import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Repository.BookRepository;
 import net.proselyte.springbootdemo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -23,12 +24,14 @@ public class BookService {
         this.userRepository = userRepository;
     }
 
-    public List<Book> findAll() {
-        return bookRepository.findAll();
+    public List<Book> findAll(Integer pageNumber) {
+        PageRequest pageRequest = PageRequest.of(pageNumber, 10);
+        Page<Book> page = bookRepository.findAll(pageRequest);
+        return page.toList();
     }
 
     public List<Book> findFreeBooks() {
-        return findAll().stream().filter(book -> book.getUser() == null).collect(Collectors.toList());
+        return bookRepository.findAll().stream().filter(book -> book.getUser() == null).collect(Collectors.toList());
     }
 
     public void saveBook(Book book) {
@@ -46,15 +49,6 @@ public class BookService {
     }
 
     public void saveBook(Long bookId, Long userId) {
-
-        /*
-        var pageReuest = PageRequest.of(0, 10);
-        var page = userRepository.findAll(pageReuest);
-        page.toList(); // 10 users
-        page.getTotalElements(); // 15
-        page.getTotalPages(); // bd has 15,   TotalPages = 2
-        */
-
         User user = userRepository.getReferenceById(userId);
         Book book = bookRepository.getOne(bookId);
         book.setUser(user);

@@ -4,11 +4,10 @@ import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
+import java.awt.print.Pageable;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -20,15 +19,12 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public String findAllBooks(Model model) {
-        List<Book> books = bookService.findAll();
+    public String findAllBooks(Model model, @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
+        List<Book> books = bookService.findAll(pageNumber);
         model.addAttribute("books", books);
-        return "/books";
-    }
-    @GetMapping("/test")
-    public String findFreeBooks(Model model) {
-        List<Book> freeBooks = bookService.findFreeBooks();
-        model.addAttribute("freeBooks", freeBooks);
+
+        int prevPage = Math.max(pageNumber - 1, 0);
+        model.addAttribute("prevPage", prevPage);
         return "/books";
     }
 
