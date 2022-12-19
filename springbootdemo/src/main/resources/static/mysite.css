@@ -1,7 +1,10 @@
-h2{
+h2 {
+    color: blueviolet;
     text-align: center;
-    font-family: sans-serif ;
-}table {
+    font-family: sans-serif;
+}
+
+table {
     margin: auto;
     text-align: center;
     width: 60%;
@@ -13,13 +16,41 @@ td {
     border: 1px solid #dddddd;
     padding: 5px;
 }
+
 th {
     font-weight: bold;
     padding: 5px;
     background: darkgray;
     border: 1px solid #dddddd;
 }
+
 button {
     margin: 0 auto;
     display: block;
+    /* remove default behavior */
+    appearance: none;
+    -webkit-appearance: none;
+    /* usual styles */
+    padding: 10px;
+    border: none;
+    background-color: #3F51B5;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+input {
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+select {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+}
+.my-form {
+    border: antiquewhite;
+    font-size: initial;
 }

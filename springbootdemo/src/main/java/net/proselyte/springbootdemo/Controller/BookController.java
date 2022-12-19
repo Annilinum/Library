@@ -27,6 +27,9 @@ public class BookController {
         model.addAttribute("prevPage", prevPage);
         int nextPage = pageNumber + 1;
         model.addAttribute("nextPage", nextPage);
+
+        List<Integer> showedNumbers = List.of(pageNumber, nextPage, nextPage+1);
+        model.addAttribute("showedNumbers", showedNumbers);
         return "/books";
     }
 

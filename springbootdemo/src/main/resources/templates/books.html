@@ -2,8 +2,8 @@
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>ВСЕкниги</title>
-    <link rel="stylesheet" th:href="@{../mysite.css}">
+    <title>ВСЕ книги</title>
+    <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
 <div th:switch="${books}">
@@ -43,16 +43,13 @@
     <table>
         <tr>
             <th><a th:href="@{/books?pageNumber=__${prevPage}__}"><</a></th>
-            <th><a href="/books?pageNumber=0">1</a></th>
-            <th><a href="/books?pageNumber=1">2</a></th>
-            <th><a href="/books?pageNumber=2">3</a></th>
+
+            <th th:each="number : ${showedNumbers}">
+                <a th:href="@{/books?pageNumber=__${number}__}" th:text="${number}">{number}</a></th>
+
             <th><a th:href="@{/books?pageNumber=__${nextPage}__}">></a></th>
         </tr>
 
-
-<!--
-            <th th:each="number : ${showedNumbers}"><a href="/books?pageNumber=__{number}__">{number}</a></th>
-        </tr>-->
     </table>
     <p style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
 </div>

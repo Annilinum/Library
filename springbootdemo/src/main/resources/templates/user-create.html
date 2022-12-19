@@ -2,16 +2,18 @@
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>Create user</title>
+    <title>Создать пользователя</title>
+    <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
-<form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
+<h2>Создать пользователя</h2>
+<form class="my-form" action="#" th:action="@{/user-create}" th:object="${user}" method="post">
     <label for="firstName">Имя</label>
     <input type="text" th:field="*{firstName}" id="firstName" placeholder="Имя">
     <label for="lastName">Фамилия</label>
     <input type="text" th:field="*{lastName}" id="lastName" placeholder="Фамилия">
     <p style="margin: 0 auto">
-    <input  type="submit" value="Создать пользователя">
+        <input type="submit" value="Создать пользователя">
     </p>
 </form>
 </body>
