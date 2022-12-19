@@ -25,6 +25,8 @@ public class BookController {
 
         int prevPage = Math.max(pageNumber - 1, 0);
         model.addAttribute("prevPage", prevPage);
+        int nextPage = pageNumber + 1;
+        model.addAttribute("nextPage", nextPage);
         return "/books";
     }
 
