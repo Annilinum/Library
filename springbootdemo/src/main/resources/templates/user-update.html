@@ -2,19 +2,26 @@
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <meta charset="UTF-8">
 <title>Create user</title>
+<link rel="stylesheet" th:href="@{../mysite.css}">
 </head>
 <body>
-<form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
-    <label for="id">ИД</label>
-    <input readonly type="number" th:field="*{id}" id="id" placeholder="ID">
-    <br/>
-    <label for="firstName">Имя</label>
-    <input type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
-    <br/>
-    <label for="lastName">Фамилия</label>
-    <input type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
-    <br/>
-    <input type="submit" value="Обновить">
-</form>
+<div class="update-form">
+    <h2>Редактировать<br>данные пользователя</h2>
+    <form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
+        <div class="field-name">
+            <label class="field-name" for="id"><br>ИД</br></label>
+            <input class="field" readonly type="number" th:field="*{id}" id="id" placeholder="ID">
+
+            <label class="field-name" for="firstName"><br>Имя</br></label>
+            <input class="field" type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
+
+            <label class="field-name" for="lastName"><br>Фамилия</br></label>
+            <input class="field" type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
+        </div>
+        <p>
+            <input class="input-create" type="submit" value="Сохранить изменения">
+        </p>
+    </form>
+</div>
 </body>
 </html>

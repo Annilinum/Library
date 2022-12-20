@@ -9,11 +9,10 @@
 <div th:switch="${books}">
     <h2 th:case="null">No books found!</h2>
     <div th:case="*">
-        <h2>Книги</h2>
-
+        <h2>Книги пользователя</h2>
         <form style="text-align: center" action="#" th:action="@{/create-book}" method="post">
-            <select name="bookId">
-                <option value="">Выбрать книгу</option>
+            <select  name="bookId" >
+                <option value="" selected>Выбрать книгу</option>
                 <option th:each="book : ${freeBooks}"
                         th:value="${book.id}"
                         th:text="${book.title}">
@@ -45,7 +44,7 @@
             </tbody>
         </table>
     </div>
-    <p style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
+    <p class="ten"><a href="/users">Вернуться к списку пользователей</a></p>
 </div>
 </body>
 </html>
