@@ -1,5 +1,4 @@
 h2 {
-    color: blueviolet;
     text-align: center;
     font-family: sans-serif;
 }
@@ -10,6 +9,7 @@ table {
     width: 60%;
     border: 1px solid #dddddd;
     border-collapse: collapse;
+    background: rgba(175, 161, 148, 0.11);
 }
 
 td {
@@ -20,23 +20,16 @@ td {
 th {
     font-weight: bold;
     padding: 5px;
-    background: darkgray;
+    background: #afa194;
     border: 1px solid #dddddd;
 }
 
 button {
     margin: 0 auto;
     display: block;
-    /* remove default behavior */
-    appearance: none;
-    -webkit-appearance: none;
-    /* usual styles */
     padding: 10px;
-    border: none;
-    background-color: #3F51B5;
-    color: #fff;
-    font-weight: 600;
-    border-radius: 5px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 }
 
 input {
@@ -46,9 +39,10 @@ input {
 }
 
 select {
-    width: 100%;
+    width: 50%;
     padding: 10px;
-    border-radius: 10px;
+    border-radius: 5px;
+    border: 0;
 }
 .my-form {
     border: antiquewhite;
