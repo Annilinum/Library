@@ -12,8 +12,12 @@
         <h2>Библиотека</h2>
 
         <form style="text-align: center" action="#" th:action="@{/create-newBook}" method="post">
-            <input type="text" name="title" placeholder="Введи название">
-            <input type="text" name="author" placeholder="Введи автора">
+            <label>
+                <input type="text" name="title" placeholder="Введи название">
+            </label>
+            <label>
+                <input type="text" name="author" placeholder="Введи автора">
+            </label>
             <input class="input-but" type="submit" value="Создать книгу">
         </form>
 

@@ -7,9 +7,7 @@ import net.proselyte.springbootdemo.Repository.BookRepository;
 import net.proselyte.springbootdemo.Repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor

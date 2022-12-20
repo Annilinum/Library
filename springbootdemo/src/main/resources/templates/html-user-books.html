@@ -11,13 +11,15 @@
     <div th:case="*">
         <h2>Книги пользователя</h2>
         <form style="text-align: center" action="#" th:action="@{/create-book}" method="post">
-            <select name="bookId">
-                <option value="" selected>Выбрать книгу</option>
-                <option th:each="book : ${freeBooks}"
-                        th:value="${book.id}"
-                        th:text="${book.title}">
-                </option>
-            </select>
+            <label>
+                <select name="bookId">
+                    <option value="" selected>Выбрать книгу</option>
+                    <option th:each="book : ${freeBooks}"
+                            th:value="${book.id}"
+                            th:text="${book.title}">
+                    </option>
+                </select>
+            </label>
             <input type="hidden" name="userId" th:value="${userId}">
             <input class="input-but" type="submit" value="Записать">
         </form>

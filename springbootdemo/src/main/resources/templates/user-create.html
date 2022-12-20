@@ -12,10 +12,10 @@
 
     <form action="#" th:action="@{/user-create}" th:object="${user}" method="post">
         <div class="field-name">
-            <label class="field-name" for="firstName"><br>Имя</br></label>
+            <label class="field-name" for="firstName"><br>Имя</label>
             <input class="field" type="text" th:field="*{firstName}" id="firstName" placeholder="Введите имя">
             <br>
-            <label class="field-name" for="lastName"><br>Фамилия</br></label>
+            <label class="field-name" for="lastName"><br>Фамилия</label>
             <input class="field" type="text" th:field="*{lastName}" id="lastName" placeholder="Введите фамилию">
         </div>
         <p>

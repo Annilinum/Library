@@ -3,19 +3,18 @@
 <meta charset="UTF-8">
 <title>Create user</title>
 <link rel="stylesheet" th:href="@{../mysite.css}">
-</head>
 <body>
 <div class="update-form">
     <h2>Редактировать<br>данные пользователя</h2>
     <form action="#" th:action="@{/user-update}" th:object="${user}" method="post">
         <div class="field-name">
-            <label class="field-name" for="id"><br>ИД</br></label>
+            <label class="field-name" for="id"><br>ИД</label>
             <input class="field" readonly type="number" th:field="*{id}" id="id" placeholder="ID">
 
-            <label class="field-name" for="firstName"><br>Имя</br></label>
+            <label class="field-name" for="firstName"><br>Имя</label>
             <input class="field" type="text" th:field="*{firstName}" id="firstName" placeholder="First Name">
 
-            <label class="field-name" for="lastName"><br>Фамилия</br></label>
+            <label class="field-name" for="lastName"><br>Фамилия</label>
             <input class="field" type="text" th:field="*{lastName}" id="lastName" placeholder="Last Name">
         </div>
         <p>
