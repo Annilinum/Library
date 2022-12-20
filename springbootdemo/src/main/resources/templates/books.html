@@ -11,7 +11,7 @@
     <div th:case="*">
         <h2>Библиотека</h2>
 
-        <form style="text-align: center"  action="#" th:action="@{/create-newBook}" method="post">
+        <form style="text-align: center" action="#" th:action="@{/create-newBook}" method="post">
             <input type="text" name="title" placeholder="Введи название">
             <input type="text" name="author" placeholder="Введи автора">
             <input class="input-but" type="submit" value="Создать книгу">
@@ -39,7 +39,7 @@
             </tbody>
         </table>
     </div>
-<br>
+    <br>
     <table>
         <tr>
             <th><a th:href="@{/books?pageNumber=__${prevPage}__}"><</a></th>

@@ -30,7 +30,8 @@
                 <td><a th:href="@{user-delete/{id}(id=${user.id})}">Удалить</a></td>
                 <td><a th:href="@{user-update/{id}(id=${user.id})}">Редактировать</a></td>
                 <td>
-                    <a th:href="@{user-books/{id}(id=${user.id})}">Смотреть (<span th:text="${user.getBooks().size()}"></span>)</a>
+                    <a th:href="@{user-books/{id}(id=${user.id})}">Смотреть (<span
+                            th:text="${user.getBooks().size()}"></span>)</a>
                 </td>
             </tr>
             </tbody>

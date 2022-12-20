@@ -113,6 +113,7 @@ a:hover {
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06); /* тень блока */
 
 }
+
 .update-form h2 {
     background-color: rgba(175, 161, 148, 0.82); /* фон заголовка */
     border-radius: 10px 10px 0 0; /* закругляем углы сверху */

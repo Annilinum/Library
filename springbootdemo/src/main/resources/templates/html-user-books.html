@@ -11,7 +11,7 @@
     <div th:case="*">
         <h2>Книги пользователя</h2>
         <form style="text-align: center" action="#" th:action="@{/create-book}" method="post">
-            <select  name="bookId" >
+            <select name="bookId">
                 <option value="" selected>Выбрать книгу</option>
                 <option th:each="book : ${freeBooks}"
                         th:value="${book.id}"
