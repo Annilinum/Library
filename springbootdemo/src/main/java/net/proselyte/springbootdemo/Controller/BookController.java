@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -53,7 +54,7 @@ public class BookController {
     }
 
     @PostMapping("/create-newBook")
-    public String createBook(String title, String author) {
+    public String createBook (String title, String author) {
         bookService.saveBook(title, author);
         return "redirect:/books";
     }

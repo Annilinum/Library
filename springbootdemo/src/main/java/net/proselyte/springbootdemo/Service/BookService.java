@@ -56,8 +56,6 @@ public class BookService {
     }
 
     public void saveBook(String title, String author) {
-        if (title.isEmpty()) throw new BadRequestException();
-        if (author.isEmpty()) throw new BadRequestException();
 
         Book book = new Book();
         book.setTitle(title);
