@@ -11,13 +11,17 @@
     <div th:case="*">
         <h2>Библиотека</h2>
 
-        <form style="text-align: center" action="#" th:action="@{/create-newBook}" method="post">
+        <form style="text-align: center" action="#" th:object="${book}" th:action="@{/create-newBook}" method="post">
             <label>
                 <input type="text" name="title" placeholder="Введи название">
+                <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
             </label>
+
             <label>
                 <input type="text" name="author" placeholder="Введи автора">
             </label>
+          <!--  <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>-->
+
             <input class="input-but" type="submit" value="Создать книгу">
         </form>
 

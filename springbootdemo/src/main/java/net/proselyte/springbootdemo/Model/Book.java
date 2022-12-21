@@ -14,10 +14,10 @@ public class Book {
     private long id;
 
     @Column(name = "author")
-    //@NotEmpty(message = "Поле не может быть пустым")
+
     private String author;
 
-   // @NotEmpty(message = "Поле не может быть пустым")
+
     @Column(name = "title")
     private String title;
 

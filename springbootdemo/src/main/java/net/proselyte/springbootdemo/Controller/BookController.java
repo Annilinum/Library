@@ -4,12 +4,15 @@ import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.swing.plaf.basic.BasicIconFactory;
 import javax.validation.Valid;
+import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Controller
@@ -54,8 +57,9 @@ public class BookController {
     }
 
     @PostMapping("/create-newBook")
-    public String createBook (String title, String author) {
-        bookService.saveBook(title, author);
+    public String createBook (@Valid CreateBookRequest book, BindingResult bindingResult) {
+        if(bindingResult.hasErrors())  return "redirect:/books";
+        bookService.saveBook(book.getTitle(), book.getAuthor());
         return "redirect:/books";
     }
 
