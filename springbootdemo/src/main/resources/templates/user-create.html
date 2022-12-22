@@ -18,7 +18,8 @@
             <br>
             <label class="field-name" for="lastName"><br>Фамилия</label>
             <input class="field" type="text" th:field="*{lastName}" id="lastName" placeholder="Введите фамилию">
-            <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName error</div>
+            <div style="color: red" th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}">LastName error
+            </div>
         </div>
         <p>
             <input class="input-create" type="submit" value="Создать пользователя">

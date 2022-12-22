@@ -11,7 +11,7 @@
     <div th:case="*">
         <h2>Библиотека</h2>
 
-        <form style="text-align: center" action="#" th:object="${book}" th:action="@{/create-newBook}" method="post">
+        <form style="text-align: center" action="#" th:object="${newBook}" th:action="@{/create-newBook}" method="post">
             <label>
                 <input type="text" name="title" placeholder="Введи название">
                 <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
@@ -19,8 +19,8 @@
 
             <label>
                 <input type="text" name="author" placeholder="Введи автора">
+                <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Title error</div>
             </label>
-          <!--  <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author error</div>-->
 
             <input class="input-but" type="submit" value="Создать книгу">
         </form>

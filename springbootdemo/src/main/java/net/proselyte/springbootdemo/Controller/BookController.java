@@ -4,15 +4,11 @@ import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Service.BookService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import javax.swing.plaf.basic.BasicIconFactory;
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
 @Controller
@@ -24,7 +20,11 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public String findAllBooks(Model model, @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
+    public String findAllBooks(Model model, @ModelAttribute("newBook") CreateBookRequest newBook, @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
+        if (model.getAttribute("newBookFormErrors") != null) {
+            model.addAttribute("org.springframework.validation.BindingResult.newBook", model.getAttribute("newBookFormErrors"));
+        }
+
         List<Book> books = bookService.findAll(pageNumber);
         model.addAttribute("books", books);
 
@@ -33,7 +33,7 @@ public class BookController {
         int nextPage = pageNumber + 1;
         model.addAttribute("nextPage", nextPage);
 
-        List<Integer> showedNumbers = List.of(pageNumber, nextPage, nextPage+1);
+        List<Integer> showedNumbers = List.of(pageNumber, nextPage, nextPage + 1);
         model.addAttribute("showedNumbers", showedNumbers);
         return "/books";
     }
@@ -57,9 +57,13 @@ public class BookController {
     }
 
     @PostMapping("/create-newBook")
-    public String createBook (@Valid CreateBookRequest book, BindingResult bindingResult) {
-        if(bindingResult.hasErrors())  return "redirect:/books";
-        bookService.saveBook(book.getTitle(), book.getAuthor());
+    public String createBook(@Valid CreateBookRequest newBook, Errors errors, RedirectAttributes redirectAttributes) {
+        if (errors.hasErrors()) {
+            redirectAttributes.addFlashAttribute("newBookFormErrors", errors);
+            redirectAttributes.addFlashAttribute("newBook", newBook);
+            return "redirect:/books";
+        }
+        bookService.saveBook(newBook.getTitle(), newBook.getAuthor());
         return "redirect:/books";
     }
 
