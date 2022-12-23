@@ -42,6 +42,18 @@ button:hover {
     top: 1px;
 }
 
+.disabled-but {
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    margin: 0 20px;
+    font-size: 15px;
+    font-family: sans-serif;
+    transition: .3s ease-in-out;
+    color: #858585;
+}
+
 .input-but {
     background-color: rgba(175, 161, 148, 0.16);
     padding: 10px;

@@ -35,6 +35,7 @@ public class BookController {
 
         int nextPage = Math.min(pageNumber + 1, totalPages);
         model.addAttribute("nextPage", nextPage);
+        model.addAttribute("totalPages", totalPages);
 
         List<Integer> showedNumbers = List.of(pageNumber + 1, nextPage + 1, nextPage + 2);
         model.addAttribute("showedNumbers", showedNumbers);
@@ -69,6 +70,4 @@ public class BookController {
         bookService.saveBook(newBook.getTitle(), newBook.getAuthor());
         return "redirect:/books";
     }
-
-
 }

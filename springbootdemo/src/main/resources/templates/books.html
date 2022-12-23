@@ -52,7 +52,10 @@
             <th><a th:href="@{/books?pageNumber=__${prevPage}__}"><</a></th>
 
             <th th:each="number : ${showedNumbers}">
-                <a th:href="@{/books?pageNumber=__${number-1}__}" th:text="${number}">{number}</a></th>
+                <a th:if="${number} <= ${totalPages}" th:href="@{/books?pageNumber=__${number-1}__}"
+                   th:text="${number}">{number}</a>
+                <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">{number}</div>
+            </th>
 
             <th><a th:href="@{/books?pageNumber=__${nextPage}__}">></a></th>
         </tr>
