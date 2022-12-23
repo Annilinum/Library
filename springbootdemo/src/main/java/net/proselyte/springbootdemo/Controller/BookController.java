@@ -32,14 +32,11 @@ public class BookController {
         int totalPages = page.getTotalPages();
         int prevPage = Math.max(pageNumber - 1, 0);
         model.addAttribute("prevPage", prevPage);
-        int nextPage = Math.min(pageNumber + 1, totalPages - 1);
+
+        int nextPage = Math.min(pageNumber + 1, totalPages);
         model.addAttribute("nextPage", nextPage);
 
         List<Integer> showedNumbers = List.of(pageNumber + 1, nextPage + 1, nextPage + 2);
-
-
-        //boolean hasNextPage = totalPages < pageNumber;
-        //System.out.println("" + hasNextPage);
         model.addAttribute("showedNumbers", showedNumbers);
         return "/books";
     }
