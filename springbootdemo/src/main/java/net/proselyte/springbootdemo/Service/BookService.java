@@ -1,6 +1,5 @@
 package net.proselyte.springbootdemo.Service;
 
-import net.proselyte.springbootdemo.Controller.BadRequestException;
 import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Repository.BookRepository;
@@ -24,10 +23,10 @@ public class BookService {
         this.userRepository = userRepository;
     }
 
-    public List<Book> findAll(Integer pageNumber) {
+    public Page<Book> findAll(Integer pageNumber) {
         PageRequest pageRequest = PageRequest.of(pageNumber, 10);
         Page<Book> page = bookRepository.findAll(pageRequest);
-        return page.toList();
+        return page;
     }
 
     public List<Book> findFreeBooks() {

@@ -10,7 +10,6 @@
     <h2 th:case="null">No books found!</h2>
     <div th:case="*">
         <h2>Библиотека</h2>
-
         <form style="text-align: center" action="#" th:object="${newBook}" th:action="@{/create-newBook}" method="post">
             <label>
                 <input type="text" name="title" placeholder="Введи название">
@@ -53,7 +52,7 @@
             <th><a th:href="@{/books?pageNumber=__${prevPage}__}"><</a></th>
 
             <th th:each="number : ${showedNumbers}">
-                <a th:href="@{/books?pageNumber=__${number}__}" th:text="${number}">{number}</a></th>
+                <a th:href="@{/books?pageNumber=__${number-1}__}" th:text="${number}">{number}</a></th>
 
             <th><a th:href="@{/books?pageNumber=__${nextPage}__}">></a></th>
         </tr>

@@ -2,6 +2,7 @@ package net.proselyte.springbootdemo.Controller;
 
 import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Service.BookService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -25,15 +26,20 @@ public class BookController {
             model.addAttribute("org.springframework.validation.BindingResult.newBook", model.getAttribute("newBookFormErrors"));
         }
 
-        List<Book> books = bookService.findAll(pageNumber);
-        model.addAttribute("books", books);
+        Page<Book> page = bookService.findAll(pageNumber);
+        model.addAttribute("books", page.toList());
 
+        int totalPages = page.getTotalPages();
         int prevPage = Math.max(pageNumber - 1, 0);
         model.addAttribute("prevPage", prevPage);
-        int nextPage = pageNumber + 1;
+        int nextPage = Math.min(pageNumber + 1, totalPages - 1);
         model.addAttribute("nextPage", nextPage);
 
-        List<Integer> showedNumbers = List.of(pageNumber, nextPage, nextPage + 1);
+        List<Integer> showedNumbers = List.of(pageNumber + 1, nextPage + 1, nextPage + 2);
+
+
+        //boolean hasNextPage = totalPages < pageNumber;
+        //System.out.println("" + hasNextPage);
         model.addAttribute("showedNumbers", showedNumbers);
         return "/books";
     }
