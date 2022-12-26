@@ -3,6 +3,7 @@ package net.proselyte.springbootdemo.Controller;
 import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Service.BookService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -21,12 +22,15 @@ public class BookController {
     }
 
     @GetMapping("/books")
-    public String findAllBooks(Model model, @ModelAttribute("newBook") CreateBookRequest newBook, @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
+    public String findAllBooks(Model model, @ModelAttribute("newBook") CreateBookRequest newBook,
+                               @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
+                               @RequestParam(value = "sortField", required = false, defaultValue = "title") String sortField,
+                               @RequestParam(value = "sortType", required = false, defaultValue = "ASC") String sortType) {
         if (model.getAttribute("newBookFormErrors") != null) {
             model.addAttribute("org.springframework.validation.BindingResult.newBook", model.getAttribute("newBookFormErrors"));
         }
 
-        Page<Book> page = bookService.findAll(pageNumber);
+        Page<Book> page = bookService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
         model.addAttribute("books", page.toList());
 
         int totalPages = page.getTotalPages();
@@ -36,6 +40,15 @@ public class BookController {
         int nextPage = Math.min(pageNumber + 1, totalPages);
         model.addAttribute("nextPage", nextPage);
         model.addAttribute("totalPages", totalPages);
+        model.addAttribute("pageNumber", pageNumber);
+        model.addAttribute("sortField", sortField);
+
+        if (Sort.Direction.fromString(sortType) == Sort.Direction.ASC) {
+            model.addAttribute("sortType", Sort.Direction.DESC.name());
+        } else {
+            model.addAttribute("sortType", Sort.Direction.ASC.name());
+        }
+
 
         List<Integer> showedNumbers = List.of(pageNumber + 1, nextPage + 1, nextPage + 2);
         model.addAttribute("showedNumbers", showedNumbers);

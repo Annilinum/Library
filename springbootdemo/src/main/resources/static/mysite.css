@@ -1,3 +1,8 @@
+
+body {
+    font-family: sans-serif;
+}
+
 h2 {
     font-family: sans-serif;
     text-align: center;
@@ -18,11 +23,15 @@ td {
     padding: 5px;
 }
 
+
+.td-action {
+    width: 15%;
+}
+
 th {
     font-weight: bold;
     padding: 5px;
     background: linear-gradient(rgba(225, 218, 210, 0.82), rgba(175, 161, 148, 0.82));
-
     border: 1px solid #dddddd;
 }
 
