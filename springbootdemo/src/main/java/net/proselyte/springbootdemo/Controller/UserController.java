@@ -3,15 +3,16 @@ package net.proselyte.springbootdemo.Controller;
 import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Service.BookService;
 import net.proselyte.springbootdemo.Service.UserService;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class UserController {
@@ -24,8 +25,9 @@ public class UserController {
     }
 
     @GetMapping("/users")
-    public String findAll(Model model) {
-        List<User> users = userService.findAll();
+    public String findAll(Model model,
+                          @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
+        Page<User> users = userService.findAll(pageNumber);
         model.addAttribute("users", users);
         return "user-list";
     }
