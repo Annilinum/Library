@@ -42,12 +42,7 @@ public class BookController {
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("sortField", sortField);
-
-        if (Sort.Direction.fromString(sortType) == Sort.Direction.ASC) {
-            model.addAttribute("sortType", Sort.Direction.DESC.name());
-        } else {
-            model.addAttribute("sortType", Sort.Direction.ASC.name());
-        }
+        model.addAttribute("sortType", sortType);
 
 
         List<Integer> showedNumbers = List.of(pageNumber + 1, nextPage + 1, nextPage + 2);

@@ -92,6 +92,7 @@ select {
     border-radius: 5px;
     border: 0;
     cursor: pointer;
+    border-right: 10px solid #edeae700;
 }
 
 option {

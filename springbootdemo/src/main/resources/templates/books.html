@@ -6,6 +6,7 @@
     <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
+
 <div th:switch="${books}">
     <h2 th:case="null">No books found!</h2>
     <div th:case="*">
@@ -28,13 +29,13 @@
         <table>
             <thead>
             <tr>
-                <th><a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=title&sortType=__${sortType}__}">Название</a>
+                <th>
+                    <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=title&sortType=__${sortField}=='title' AND ${sortType}=='ASC' ? 'DESC' : 'ASC'__}">Название</a>
                 </th>
                 <th>
-                    <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=author&sortType=__${sortType}__}">Автор</a>
+                    <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=author&sortType=__${sortField}=='author' AND ${sortType}=='ASC' ? 'DESC': 'ASC'__}">Автор</a>
                 </th>
                 <th>Действия</th>
-
             </tr>
             <tr></tr>
             </thead>
@@ -52,15 +53,22 @@
     <br>
     <table>
         <tr>
-            <th><a th:href="@{/books?pageNumber=__${prevPage}__}"><</a></th>
+            <th>
+                <a th:href="@{/books?pageNumber=__${prevPage}__&sortField=__${sortField}__&sortType=__${sortType}__}"><</a>
+            </th>
 
             <th th:each="number : ${showedNumbers}">
-                <a th:if="${number} <= ${totalPages}" th:href="@{/books?pageNumber=__${number-1}__}"
+                <a th:if="${number} <= ${totalPages}"
+                   th:href="@{/books?pageNumber=__${number-1}__&sortField=__${sortField}__&sortType=__${sortType}__}"
                    th:text="${number}">{number}</a>
                 <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">{number}</div>
             </th>
 
-            <th><a th:href="@{/books?pageNumber=__${nextPage}__}">></a></th>
+            <th>
+                <a th:if="${pageNumber} < ${totalPages-1}"
+                   th:href="@{/books?pageNumber=__${nextPage}__&sortField=__${sortField}__&sortType=__${sortType}__}">></a>
+                <div class="disabled-but" th:if="${pageNumber} >= ${totalPages-1}">></div>
+            </th>
         </tr>
 
     </table>
