@@ -11,14 +11,15 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.validation.Valid;
-import java.util.List;
 
 @Controller
 public class BookController {
     private final BookService bookService;
+    private final PageableHelper pageableHelper;
 
-    public BookController(BookService bookService) {
+    public BookController(BookService bookService, PageableHelper pageableHelper) {
         this.bookService = bookService;
+        this.pageableHelper = pageableHelper;
     }
 
     @GetMapping("/books")
@@ -32,21 +33,10 @@ public class BookController {
 
         Page<Book> page = bookService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
         model.addAttribute("books", page.toList());
-
-        int totalPages = page.getTotalPages();
-        int prevPage = Math.max(pageNumber - 1, 0);
-        model.addAttribute("prevPage", prevPage);
-
-        int nextPage = Math.min(pageNumber + 1, totalPages);
-        model.addAttribute("nextPage", nextPage);
-        model.addAttribute("totalPages", totalPages);
-        model.addAttribute("pageNumber", pageNumber);
         model.addAttribute("sortField", sortField);
         model.addAttribute("sortType", sortType);
 
-
-        List<Integer> showedNumbers = List.of(pageNumber + 1, nextPage + 1, nextPage + 2);
-        model.addAttribute("showedNumbers", showedNumbers);
+        pageableHelper.fillPageable(model, pageNumber, page.getTotalPages());
         return "/books";
     }
 

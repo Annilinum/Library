@@ -39,11 +39,19 @@
         <br>
         <table>
             <tr>
-                <th><</th>
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>></th>
+                <th>
+                    <a th:href="@{/users?pageNumber=__${prevPage}__}"><</a>
+                </th>
+                <th th:each="number : ${showedNumbers}">
+                    <a th:if="${number} <= ${totalPages}"
+                       th:href="@{/users?pageNumber=__${number-1}__}"
+                       th:text="${number}">{number}</a>
+                    <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">{number}</div>
+                </th>
+                <th><a th:if="${pageNumber} < ${totalPages-1}"
+                       th:href="@{/users?pageNumber=__${nextPage}__}">></a>
+                    <div class="disabled-but" th:if="${pageNumber} >= ${totalPages-1}">></div>
+                </th>
             </tr>
         </table>
     </div>

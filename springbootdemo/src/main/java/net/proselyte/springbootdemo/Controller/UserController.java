@@ -18,17 +18,22 @@ import javax.validation.Valid;
 public class UserController {
     private final UserService userService;
     private final BookService bookService;
+    private final PageableHelper pageableHelper;
 
-    public UserController(UserService userService, BookService bookService) {
+    public UserController(UserService userService, BookService bookService, PageableHelper pageableHelper) {
         this.userService = userService;
         this.bookService = bookService;
+        this.pageableHelper = pageableHelper;
     }
 
     @GetMapping("/users")
     public String findAll(Model model,
                           @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
-        Page<User> users = userService.findAll(pageNumber);
-        model.addAttribute("users", users);
+        Page<User> usersPage = userService.findAll(pageNumber);
+        model.addAttribute("users", usersPage.toList());
+
+        pageableHelper.fillPageable(model, pageNumber, usersPage.getTotalPages());
+
         return "user-list";
     }
 
