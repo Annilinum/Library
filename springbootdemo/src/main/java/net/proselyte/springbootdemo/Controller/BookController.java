@@ -33,10 +33,8 @@ public class BookController {
 
         Page<Book> page = bookService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
         model.addAttribute("books", page.toList());
-        model.addAttribute("sortField", sortField);
-        model.addAttribute("sortType", sortType);
 
-        pageableHelper.fillPageable(model, pageNumber, page.getTotalPages());
+        pageableHelper.fillPageable(model, pageNumber, page.getTotalPages(), sortField, sortType);
         return "/books";
     }
 

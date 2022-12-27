@@ -26,8 +26,7 @@ public class BookService {
 
     public Page<Book> findAll(Integer pageNumber, String sortField, Sort.Direction sortDirection) {
         PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
-        Page<Book> page = bookRepository.findAll(pageRequest);
-        return page;
+        return bookRepository.findAll(pageRequest);
     }
 
     public List<Book> findFreeBooks() {

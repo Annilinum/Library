@@ -59,6 +59,7 @@
 
             <th th:each="number : ${showedNumbers}">
                 <a th:if="${number} <= ${totalPages}"
+                   th:classappend="${pageNumber+1}==${number} ? active-page"
                    th:href="@{/books?pageNumber=__${number-1}__&sortField=__${sortField}__&sortType=__${sortType}__}"
                    th:text="${number}">{number}</a>
                 <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">{number}</div>

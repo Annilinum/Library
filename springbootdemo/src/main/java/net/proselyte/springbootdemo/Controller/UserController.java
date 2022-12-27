@@ -4,6 +4,7 @@ import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Service.BookService;
 import net.proselyte.springbootdemo.Service.UserService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -28,12 +29,13 @@ public class UserController {
 
     @GetMapping("/users")
     public String findAll(Model model,
-                          @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber) {
-        Page<User> usersPage = userService.findAll(pageNumber);
-        model.addAttribute("users", usersPage.toList());
+                          @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
+                          @RequestParam(value = "sortField", required = false, defaultValue = "id") String sortField,
+                          @RequestParam(value = "sortType", required = false, defaultValue = "ASC") String sortType) {
+        Page<User> users = userService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
+        model.addAttribute("users", users.toList());
 
-        pageableHelper.fillPageable(model, pageNumber, usersPage.getTotalPages());
-
+        pageableHelper.fillPageable(model, pageNumber, users.getTotalPages(), sortField, sortType);
         return "user-list";
     }
 

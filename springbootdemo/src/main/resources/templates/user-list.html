@@ -13,9 +13,15 @@
         <table class="myclass">
             <thead>
             <tr>
-                <th>ИД</th>
-                <th>Имя</th>
-                <th>Фамилия</th>
+                <th>
+                    <a th:href="@{/users?pageNumber=__${pageNumber}__&sortField=id&sortType=__${sortField}=='id' AND ${sortType}=='ASC' ? 'DESC' : 'ASC'__}">ИД</a>
+                </th>
+                <th>
+                    <a th:href="@{/users?pageNumber=__${pageNumber}__&sortField=firstName&sortType=__${sortField}=='firstName' AND ${sortType}=='ASC' ? 'DESC' : 'ASC'__}">Имя</a>
+                </th>
+                <th>
+                    <a th:href="@{/users?pageNumber=__${pageNumber}__&sortField=lastName&sortType=__${sortField}=='lastName' AND ${sortType}=='ASC' ? 'DESC' : 'ASC'__}">Фамилия</a>
+                </th>
                 <th></th>
                 <th></th>
                 <th>Книги</th>
@@ -40,16 +46,18 @@
         <table>
             <tr>
                 <th>
-                    <a th:href="@{/users?pageNumber=__${prevPage}__}"><</a>
+                    <a th:href="@{/users?pageNumber=__${prevPage}__&sortField=__${sortField}__&sortType=__${sortType}__}"><</a>
                 </th>
                 <th th:each="number : ${showedNumbers}">
-                    <a th:if="${number} <= ${totalPages}"
-                       th:href="@{/users?pageNumber=__${number-1}__}"
-                       th:text="${number}">{number}</a>
+                    <a
+                            th:if="${number} <= ${totalPages}"
+                            th:classappend="${pageNumber+1}==${number} ? active-page"
+                            th:href="@{/users?pageNumber=__${number-1}__&sortField=__${sortField}__&sortType=__${sortType}__}"
+                            th:text="${number}">{number}</a>
                     <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">{number}</div>
                 </th>
                 <th><a th:if="${pageNumber} < ${totalPages-1}"
-                       th:href="@{/users?pageNumber=__${nextPage}__}">></a>
+                       th:href="@{/users?pageNumber=__${nextPage}__&sortField=__${sortField}__&sortType=__${sortType}__}">></a>
                     <div class="disabled-but" th:if="${pageNumber} >= ${totalPages-1}">></div>
                 </th>
             </tr>
