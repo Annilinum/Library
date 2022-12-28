@@ -2,12 +2,9 @@
     text-decoration-line: underline;
 }
 
-.class2 {
-
-}
-
 body {
     font-family: sans-serif;
+    background-color: rgba(175, 161, 148, 0.07);
 }
 
 h2 {
@@ -29,7 +26,6 @@ td {
     border: 1px solid #dddddd;
     padding: 5px;
 }
-
 
 .td-action {
     width: 15%;
@@ -112,10 +108,6 @@ select.decorated option:checked {
     box-shadow: 0 0 10px 100px #1882A8 inset;
 }
 
-body {
-    background-color: rgba(175, 161, 148, 0.07);
-}
-
 a {
     text-decoration: none;
     display: inline-block;
@@ -134,49 +126,47 @@ a:hover {
 }
 
 .update-form {
-    width: 350px; /* ширина блока */
-    height: 370px; /* высота блока */
-    background: rgba(175, 161, 148, 0.16); /* фон блока */
-    border-radius: 10px; /* закругленные углы блока */
-    margin: 10% auto; /* отступ сверху и выравнивание по середине */
-    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06); /* тень блока */
-
+    width: 350px;
+    height: 370px;
+    background: rgba(175, 161, 148, 0.16);
+    border-radius: 10px;
+    margin: 10% auto;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 }
 
 .update-form h2 {
-    background-color: rgba(175, 161, 148, 0.82); /* фон заголовка */
-    border-radius: 10px 10px 0 0; /* закругляем углы сверху */
-    color: black; /* цвет текста */
-    font-size: 20px; /* размер шрифта */
-    padding: 20px; /* отступы */
+    background-color: rgba(175, 161, 148, 0.82);
+    border-radius: 10px 10px 0 0;
+    color: black;
+    font-size: 20px;
+    padding: 20px;
     text-align: center;
     text-transform: uppercase;
 }
 
-
 .create-form {
-    width: 350px; /* ширина блока */
-    height: 325px; /* высота блока */
-    background: rgba(175, 161, 148, 0.16); /* фон блока */
-    border-radius: 10px; /* закругленные углы блока */
-    margin: 10% auto; /* отступ сверху и выравнивание по середине */
-    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06); /* тень блока */
+    width: 350px;
+    height: 325px;
+    background: rgba(175, 161, 148, 0.16);
+    border-radius: 10px;
+    margin: 10% auto;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 }
 
 .create-form h2 {
-    background-color: rgba(175, 161, 148, 0.82); /* фон заголовка */
-    border-radius: 10px 10px 0 0; /* закругляем углы сверху */
-    color: black; /* цвет текста */
-    font-size: 20px; /* размер шрифта */
-    padding: 20px; /* отступы */
+    background-color: rgba(175, 161, 148, 0.82);
+    border-radius: 10px 10px 0 0;
+    color: black;
+    font-size: 20px;
+    padding: 20px;
     text-align: center;
     text-transform: uppercase;
 }
 
 .field {
-    border: none; /* рамка */
-    padding: 13px; /* отступы текста */
-    width: 260px; /* ширина */
+    border: none;
+    padding: 13px;
+    width: 260px;
     border-radius: 5px;
     box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
 }
@@ -227,8 +217,4 @@ p {
     padding-left: 10px;
     padding-right: 10px;
     color: black;
-}
-
-option:hover {
-    background-color: yellow;
 }

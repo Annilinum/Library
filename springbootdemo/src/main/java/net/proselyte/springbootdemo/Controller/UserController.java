@@ -34,7 +34,6 @@ public class UserController {
                           @RequestParam(value = "sortType", required = false, defaultValue = "ASC") String sortType) {
         Page<User> users = userService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
         model.addAttribute("users", users.toList());
-
         pageableHelper.fillPageable(model, pageNumber, users.getTotalPages(), sortField, sortType);
         return "user-list";
     }
@@ -80,5 +79,4 @@ public class UserController {
         model.addAttribute("freeBooks", bookService.findFreeBooks());
         return "/html-user-books";
     }
-
 }

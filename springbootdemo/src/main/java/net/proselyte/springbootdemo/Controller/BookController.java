@@ -27,13 +27,14 @@ public class BookController {
                                @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
                                @RequestParam(value = "sortField", required = false, defaultValue = "title") String sortField,
                                @RequestParam(value = "sortType", required = false, defaultValue = "ASC") String sortType) {
+
         if (model.getAttribute("newBookFormErrors") != null) {
-            model.addAttribute("org.springframework.validation.BindingResult.newBook", model.getAttribute("newBookFormErrors"));
+            model.addAttribute("org.springframework.validation.BindingResult.newBook",
+                    model.getAttribute("newBookFormErrors"));
         }
 
         Page<Book> page = bookService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
         model.addAttribute("books", page.toList());
-
         pageableHelper.fillPageable(model, pageNumber, page.getTotalPages(), sortField, sortType);
         return "/books";
     }

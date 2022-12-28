@@ -30,18 +30,13 @@
                 <th>Название</th>
                 <th>Автор</th>
                 <th>Всего <span th:text="${books.size()}"></span> шт.</th>
-
             </tr>
-
             </thead>
             <tbody>
             <tr th:each="book : ${books}">
-
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>
-
                 <td><a th:href="@{/book-delete/{userId}/{id}(userId=${userId},id=${book.id})}">Удалить</a></td>
-
             </tr>
             </tbody>
         </table>

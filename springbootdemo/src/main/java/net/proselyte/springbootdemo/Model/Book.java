@@ -3,7 +3,6 @@ package net.proselyte.springbootdemo.Model;
 import lombok.Data;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 
 @Data
 @Entity
@@ -14,14 +13,12 @@ public class Book {
     private long id;
 
     @Column(name = "author")
-
     private String author;
-
 
     @Column(name = "title")
     private String title;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name="person_id")
+    @JoinColumn(name = "person_id")
     private User user;
 }

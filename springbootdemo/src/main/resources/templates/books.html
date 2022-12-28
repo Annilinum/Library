@@ -2,11 +2,10 @@
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
-    <title>ВСЕ книги</title>
+    <title>Библиотека</title>
     <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
-
 <div th:switch="${books}">
     <h2 th:case="null">No books found!</h2>
     <div th:case="*">
@@ -16,15 +15,12 @@
                 <input type="text" name="title" placeholder="Введи название">
                 <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
             </label>
-
             <label>
                 <input type="text" name="author" placeholder="Введи автора">
                 <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Title error</div>
             </label>
-
             <input class="input-but" type="submit" value="Создать книгу">
         </form>
-
         <br>
         <table>
             <thead>
@@ -41,11 +37,9 @@
             </thead>
             <tbody>
             <tr th:each="book : ${books}">
-
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>
                 <td class="td-action"><a th:href="@{/books/{bookId}(bookId=${book.id})}">Удалить</a></td>
-
             </tr>
             </tbody>
         </table>
@@ -56,22 +50,19 @@
             <th>
                 <a th:href="@{/books?pageNumber=__${prevPage}__&sortField=__${sortField}__&sortType=__${sortType}__}"><</a>
             </th>
-
             <th th:each="number : ${showedNumbers}">
                 <a th:if="${number} <= ${totalPages}"
                    th:classappend="${pageNumber+1}==${number} ? active-page"
                    th:href="@{/books?pageNumber=__${number-1}__&sortField=__${sortField}__&sortType=__${sortType}__}"
-                   th:text="${number}">{number}</a>
-                <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">{number}</div>
+                   th:text="${number}">number</a>
+                <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">number</div>
             </th>
-
             <th>
                 <a th:if="${pageNumber} < ${totalPages-1}"
                    th:href="@{/books?pageNumber=__${nextPage}__&sortField=__${sortField}__&sortType=__${sortType}__}">></a>
                 <div class="disabled-but" th:if="${pageNumber} >= ${totalPages-1}">></div>
             </th>
         </tr>
-
     </table>
     <p class="ten" style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
 </div>
