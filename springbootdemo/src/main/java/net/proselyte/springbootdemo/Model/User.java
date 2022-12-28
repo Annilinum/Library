@@ -1,12 +1,14 @@
 package net.proselyte.springbootdemo.Model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "users")
 public class User {
@@ -22,7 +24,15 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "user")
+    @ManyToMany(fetch = FetchType.EAGER, mappedBy = "users")
     public List<Book> books;
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

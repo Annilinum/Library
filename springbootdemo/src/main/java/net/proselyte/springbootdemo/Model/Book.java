@@ -1,10 +1,13 @@
 package net.proselyte.springbootdemo.Model;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.List;
 
-@Data
+@Getter
+@Setter
 @Entity
 @Table(name = "books")
 public class Book {
@@ -18,7 +21,19 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "person_id")
-    private User user;
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_book",
+            joinColumns = @JoinColumn(name = "book_id"),
+            inverseJoinColumns = @JoinColumn(name = "user_id"))
+    private List<User> users;
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", author='" + author + '\'' +
+                ", title='" + title + '\'' +
+                ", users=" + users +
+                '}';
+    }
 }

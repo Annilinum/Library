@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -30,7 +30,7 @@ public class BookService {
     }
 
     public List<Book> findFreeBooks() {
-        return bookRepository.findAll().stream().filter(book -> book.getUser() == null).collect(Collectors.toList());
+        return new ArrayList<>();//;/bookRepository.findAll().stream().filter(book -> book.getUser() == null).collect(Collectors.toList());
     }
 
     public void saveBook(Book book) {
@@ -43,14 +43,14 @@ public class BookService {
 
     public void deleteUserFromBook(Long bookId) {
         Book book = bookRepository.getOne(bookId);
-        book.setUser(null);
+        /*  book.setUser(null);*/
         saveBook(book);
     }
 
     public void saveBook(Long bookId, Long userId) {
         User user = userRepository.getReferenceById(userId);
         Book book = bookRepository.getOne(bookId);
-        book.setUser(user);
+        /*  book.setUser(user);*/
         saveBook(book);
     }
 
