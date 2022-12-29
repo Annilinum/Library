@@ -64,7 +64,7 @@ public class BookController {
             redirectAttributes.addFlashAttribute("newBook", newBook);
             return "redirect:/books";
         }
-        bookService.saveBook(newBook.getTitle(), newBook.getAuthor());
+        bookService.createNewBook(newBook.getTitle(), newBook.getAuthor());
         return "redirect:/books";
     }
 

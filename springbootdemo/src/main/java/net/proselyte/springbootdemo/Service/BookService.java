@@ -57,10 +57,11 @@ public class BookService {
         Book book = bookRepository.getOne(bookId);
         book.getUsers().add(user);
         book.setCountLeft(book.getCountLeft() - 1);
+        
         saveBook(book);
     }
 
-    public void saveBook(String title, String author) {
+    public void createNewBook(String title, String author) {
         Book book = new Book();
         book.setTitle(title);
         book.setAuthor(author);

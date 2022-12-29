@@ -31,11 +31,8 @@
                 <th>
                     <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=author&sortType=__${sortField}=='author' AND ${sortType}=='ASC' ? 'DESC': 'ASC'__}">Автор</a>
                 </th>
-                <th>Наличие</th>
-                <th></th>
-
+                <th>Доступно</th>
                 <th colspan="2">Действия</th>
-
             </tr>
             <tr></tr>
             </thead>
@@ -43,8 +40,8 @@
             <tr th:each="book : ${books}">
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>
-                <td th:text="${book.countTotal}"></td>
-                <td th:text="${book.countLeft}"></td>
+
+                <td th:text="${book.countLeft} +' '+ '('+${book.countTotal}+')'"></td>
                 <td>
                     <a th:href="@{book-update/{id}(id=${book.id})}">Редактировать</a></td>
                 <td class="td-action"><a th:href="@{/books/{bookId}(bookId=${book.id})}">Удалить</a></td>
