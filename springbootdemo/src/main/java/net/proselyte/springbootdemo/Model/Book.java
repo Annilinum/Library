@@ -21,8 +21,11 @@ public class Book {
     @Column(name = "title")
     private String title;
 
-    @Column(name = "book_count")
-    private int bookCount;
+    @Column(name = "count_total")
+    private int countTotal;
+
+    @Column(name = "count_left")
+    private int countLeft;
 
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_book",

@@ -67,4 +67,19 @@ public class BookController {
         bookService.saveBook(newBook.getTitle(), newBook.getAuthor());
         return "redirect:/books";
     }
+
+    @GetMapping("/book-update/{id}")
+    public String updateBookForm(@PathVariable("id") Long id, Model model) {
+        Book book = bookService.findById(id);
+        model.addAttribute("book", book);
+        return "/book-update";
+    }
+
+    @PostMapping("/book-update")
+    public String updateBook(@Valid Book book, Errors errors) {
+        if (errors.hasErrors())
+            return "/book-update";
+        bookService.saveBook(book);
+        return "redirect:/books";
+    }
 }

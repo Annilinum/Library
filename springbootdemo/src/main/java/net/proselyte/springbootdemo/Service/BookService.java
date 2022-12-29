@@ -29,6 +29,10 @@ public class BookService {
         return bookRepository.findAll(pageRequest);
     }
 
+    public Book findById(long id) {
+        return bookRepository.getOne(id);
+    }
+
     public List<Book> findFreeBooks() {
         return new ArrayList<>();//;/bookRepository.findAll().stream().filter(book -> book.getUser() == null).collect(Collectors.toList());
     }
@@ -43,19 +47,21 @@ public class BookService {
 
     public void deleteUserFromBook(Long bookId) {
         Book book = bookRepository.getOne(bookId);
+        //   book.количество_оставшихся_книг = book.количество_оставшихся_книг + 1
         /*  book.setUser(null);*/
+        //book.getUsers().remove()??/??
         saveBook(book);
     }
 
     public void saveBook(Long bookId, Long userId) {
         User user = userRepository.getReferenceById(userId);
         Book book = bookRepository.getOne(bookId);
-        /*  book.setUser(user);*/
+        book.getUsers().add(user);
+        //book.setUser(user);
         saveBook(book);
     }
 
     public void saveBook(String title, String author) {
-
         Book book = new Book();
         book.setTitle(title);
         book.setAuthor(author);

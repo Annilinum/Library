@@ -41,8 +41,9 @@
             <tr th:each="book : ${books}">
                 <td th:text="${book.title}"></td>
                 <td th:text="${book.author}"></td>
-                <td th:text="${book.bookCount}"></td>
-                <td>Редактировать</td>
+                <td th:text="${book.countTotal}"></td>
+                <td>
+                    <a th:href="@{book-update/{id}(id=${book.id})}">Редактировать</a></td>
                 <td class="td-action"><a th:href="@{/books/{bookId}(bookId=${book.id})}">Удалить</a></td>
             </tr>
             </tbody>
