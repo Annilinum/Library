@@ -10,8 +10,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class BookService {
@@ -34,7 +34,7 @@ public class BookService {
     }
 
     public List<Book> findFreeBooks() {
-        return new ArrayList<>();//;/bookRepository.findAll().stream().filter(book -> book.getUser() == null).collect(Collectors.toList());
+        return bookRepository.findAll().stream().filter(book -> book.getCountLeft() > 0).collect(Collectors.toList());
     }
 
     public void saveBook(Book book) {
@@ -45,11 +45,10 @@ public class BookService {
         bookRepository.deleteById(id);
     }
 
-    public void deleteUserFromBook(Long bookId) {
+    public void deleteUserFromBook(Long bookId, Long userId) {
         Book book = bookRepository.getOne(bookId);
-        //   book.количество_оставшихся_книг = book.количество_оставшихся_книг + 1
-        /*  book.setUser(null);*/
-        //book.getUsers().remove()??/??
+        book.getUsers().remove(userRepository.getById(userId));
+        book.setCountLeft(book.getCountLeft() + 1);
         saveBook(book);
     }
 
@@ -57,7 +56,7 @@ public class BookService {
         User user = userRepository.getReferenceById(userId);
         Book book = bookRepository.getOne(bookId);
         book.getUsers().add(user);
-        //book.setUser(user);
+        book.setCountLeft(book.getCountLeft() - 1);
         saveBook(book);
     }
 
