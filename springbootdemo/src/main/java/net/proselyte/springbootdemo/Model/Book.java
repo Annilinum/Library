@@ -21,6 +21,9 @@ public class Book {
     @Column(name = "title")
     private String title;
 
+    @Column(name = "book_count")
+    private int bookCount;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "user_book",
             joinColumns = @JoinColumn(name = "book_id"),
