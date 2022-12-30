@@ -57,7 +57,7 @@ public class BookService {
         Book book = bookRepository.getOne(bookId);
         book.getUsers().add(user);
         book.setCountLeft(book.getCountLeft() - 1);
-        
+
         saveBook(book);
     }
 
@@ -66,5 +66,9 @@ public class BookService {
         book.setTitle(title);
         book.setAuthor(author);
         saveBook(book);
+    }
+
+    public List<User> getReaderByBookId(Long bookId) {
+        return findById(bookId).getUsers();
     }
 }

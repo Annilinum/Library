@@ -82,4 +82,11 @@ public class BookController {
         bookService.saveBook(book);
         return "redirect:/books";
     }
+
+    @GetMapping("/readers/{id}")
+    public String getReader(@PathVariable("id") Long id, Model model) {
+        model.addAttribute("readers", bookService.getReaderByBookId(id));
+        model.addAttribute("bookId", id);
+        return "readers";
+    }
 }

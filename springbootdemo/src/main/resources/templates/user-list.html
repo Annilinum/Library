@@ -22,9 +22,8 @@
                 <th>
                     <a th:href="@{/users?pageNumber=__${pageNumber}__&sortField=lastName&sortType=__${sortField}=='lastName' AND ${sortType}=='ASC' ? 'DESC' : 'ASC'__}">Фамилия</a>
                 </th>
-                <th></th>
-                <th></th>
                 <th>Книги</th>
+                <th colspan="2">Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -33,15 +32,17 @@
                 <td th:text="${user.firstName}"></td>
                 <td th:text="${user.lastName}"></td>
                 <td>
-                    <a th:href="@{user-delete/{id}(id=${user.id})}">Удалить</a>
+                    <a th:href="@{user-books/{id}(id=${user.id})}">Смотреть (<span
+                            th:text="${user.getBooks().size()}"></span>)</a>
                 </td>
                 <td>
                     <a th:href="@{user-update/{id}(id=${user.id})}">Редактировать</a>
                 </td>
                 <td>
-                    <a th:href="@{user-books/{id}(id=${user.id})}">Смотреть (<span
-                            th:text="${user.getBooks().size()}"></span>)</a>
+                    <a th:href="@{user-delete/{id}(id=${user.id})}">Удалить</a>
                 </td>
+
+
             </tr>
             </tbody>
         </table>
