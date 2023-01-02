@@ -10,7 +10,7 @@
     <h2 th:case="null">No books found!</h2>
     <div th:case="*">
         <h2>Книги пользователя</h2>
-        <form style="text-align: center" action="#" th:action="@{/create-book}" method="post">
+        <form style="text-align: center" action="#" th:action="@{/issue-book}" method="post">
             <label>
                 <select name="bookId">
                     <option value="" selected>Выбрать книгу</option>

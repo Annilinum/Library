@@ -1,78 +1,68 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Библиотека</title>
-    <link rel="stylesheet" th:href="@{mysite.css}">
+  <meta charset="UTF-8">
+  <title>Библиотека</title>
+  <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
 <div th:switch="${books}">
-    <h2 th:case="null">No books found!</h2>
-    <div th:case="*">
-        <h2>Библиотека</h2>
-        <form style="text-align: center" action="#" th:object="${newBook}" th:action="@{/create-newBook}" method="post">
-            <label>
-                <input type="text" name="title" placeholder="Введи название">
-                <div style="color: red" th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title error</div>
-            </label>
-            <label>
-                <input type="text" name="author" placeholder="Введи автора">
-                <div style="color: red" th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Title error</div>
-            </label>
-            <input class="input-but" type="submit" value="Создать книгу">
-        </form>
-        <br>
-        <table>
-            <thead>
-            <tr>
-                <th>
-                    <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=title&sortType=__${sortField}=='title' AND ${sortType}=='ASC' ? 'DESC' : 'ASC'__}">Название</a>
-                </th>
-                <th>
-                    <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=author&sortType=__${sortField}=='author' AND ${sortType}=='ASC' ? 'DESC': 'ASC'__}">Автор</a>
-                </th>
-                <th>Доступно</th>
-                <th>Читатели</th>
-                <th colspan="2">Действия</th>
-            </tr>
-            <tr></tr>
-            </thead>
-            <tbody>
-            <tr th:each="book : ${books}">
-                <td th:text="${book.title}"></td>
-                <td th:text="${book.author}"></td>
-
-                <td th:text="${book.countLeft} +' '+ '('+${book.countTotal}+')'"></td>
-                <td>
-                    <a th:href="@{readers/{id}(id=${book.id})}">Смотреть</a></td>
-                <td>
-                    <a th:href="@{book-update/{id}(id=${book.id})}">Редактировать</a></td>
-                <td class="td-action"><a th:href="@{/books/{bookId}(bookId=${book.id})}">Удалить</a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <br>
+  <h2 th:case="null">No books found!</h2>
+  <div th:case="*">
+    <h2>Библиотека</h2>
     <table>
-        <tr>
-            <th>
-                <a th:href="@{/books?pageNumber=__${prevPage}__&sortField=__${sortField}__&sortType=__${sortType}__}"><</a>
-            </th>
-            <th th:each="number : ${showedNumbers}">
-                <a th:if="${number} <= ${totalPages}"
-                   th:classappend="${pageNumber+1}==${number} ? active-page"
-                   th:href="@{/books?pageNumber=__${number-1}__&sortField=__${sortField}__&sortType=__${sortType}__}"
-                   th:text="${number}">number</a>
-                <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">number</div>
-            </th>
-            <th>
-                <a th:if="${pageNumber} < ${totalPages-1}"
-                   th:href="@{/books?pageNumber=__${nextPage}__&sortField=__${sortField}__&sortType=__${sortType}__}">></a>
-                <div class="disabled-but" th:if="${pageNumber} >= ${totalPages-1}">></div>
-            </th>
-        </tr>
+      <thead>
+      <tr>
+        <th>
+          <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=title&sortType=__${sortField}=='title' AND ${sortType}=='ASC' ? 'DESC' : 'ASC'__}">Название</a>
+        </th>
+        <th>
+          <a th:href="@{/books?pageNumber=__${pageNumber}__&sortField=author&sortType=__${sortField}=='author' AND ${sortType}=='ASC' ? 'DESC': 'ASC'__}">Автор</a>
+        </th>
+        <th>Доступно</th>
+        <th>Читатели</th>
+        <th colspan="2">Действия</th>
+      </tr>
+      <tr></tr>
+      </thead>
+      <tbody>
+      <tr th:each="book : ${books}">
+        <td th:text="${book.title}"></td>
+        <td th:text="${book.author}"></td>
+
+        <td th:text="${book.countLeft} +' '+ '('+${book.countTotal}+')'"></td>
+        <td>
+          <a th:href="@{readers/{id}(id=${book.id})}">Смотреть(<span
+              th:text="${book.getUsers().size()}"></span>)</a></td>
+        <td>
+          <a th:href="@{book-update/{id}(id=${book.id})}">Редактировать</a></td>
+        <td class="td-action"><a th:href="@{/books/{bookId}(bookId=${book.id})}">Удалить</a></td>
+      </tr>
+      </tbody>
     </table>
-    <p class="ten" style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
+  </div>
+  <br>
+  <table>
+    <tr>
+      <th>
+        <a th:href="@{/books?pageNumber=__${prevPage}__&sortField=__${sortField}__&sortType=__${sortType}__}"><</a>
+      </th>
+      <th th:each="number : ${showedNumbers}">
+        <a th:if="${number} <= ${totalPages}"
+           th:classappend="${pageNumber+1}==${number} ? active-page"
+           th:href="@{/books?pageNumber=__${number-1}__&sortField=__${sortField}__&sortType=__${sortType}__}"
+           th:text="${number}">number</a>
+        <div class="disabled-but" th:if="${number} > ${totalPages}" th:text="${number}">number</div>
+      </th>
+      <th>
+        <a th:if="${pageNumber} < ${totalPages-1}"
+           th:href="@{/books?pageNumber=__${nextPage}__&sortField=__${sortField}__&sortType=__${sortType}__}">></a>
+        <div class="disabled-but" th:if="${pageNumber} >= ${totalPages-1}">></div>
+      </th>
+    </tr>
+  </table>
+  <p class="ten" style="text-align: center"><a href="/users">Вернуться к списку пользователей</a></p>
+  <p class="ten" style="text-align: center"><a href="/create-new-book">Создать новую книгу</a></p>
 </div>
 </body>
 </html>
