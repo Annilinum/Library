@@ -1,33 +1,33 @@
 <!DOCTYPE html>
 <html lang="ru" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
-    <meta charset="UTF-8">
-    <title>Читатели</title>
-    <link rel="stylesheet" th:href="@{../mysite.css}">
+  <meta charset="UTF-8">
+  <title>Читатели</title>
+  <link rel="stylesheet" th:href="@{../mysite.css}">
 </head>
 <body>
 <div th:switch="${readers}">
-    <h2 th:case="null">No readers found!</h2>
-    <div th:case="*">
-        <h2>Читатели (данной книги)</h2>
-        <table>
-            <thead>
-            <tr>
-                <th>Имя</th>
-                <th>Фамилия</th>
-                <th>Действия</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="reader : ${readers}">
-                <td th:text="${reader.firstName}"></td>
-                <td th:text="${reader.lastName}"></td>
-                <td>Удалить</td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <p class="ten"><a href="/users">Вернуться к списку пользователей</a></p>
+  <h2 th:case="null">No readers found!</h2>
+  <div th:case="*">
+    <h2>Читатели (данной книги)</h2>
+    <table>
+      <thead>
+      <tr>
+        <th>Имя</th>
+        <th>Фамилия</th>
+        <th>Действия</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr th:each="reader : ${readers}">
+        <td th:text="${reader.firstName}"></td>
+        <td th:text="${reader.lastName}"></td>
+        <td>Удалить</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <p class="ten"><a href="/">Вернуться к списку пользователей</a></p>
 </div>
 </body>
 </html>

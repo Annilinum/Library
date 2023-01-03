@@ -26,7 +26,7 @@ public class UserController {
     this.pageableHelper = pageableHelper;
   }
 
-  @GetMapping("/users")
+  @GetMapping("/")
   public String findAll(Model model,
       @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
       @RequestParam(value = "sortField", required = false, defaultValue = "id") String sortField,
@@ -44,17 +44,17 @@ public class UserController {
 
   @PostMapping("/user-create")
   public String createUser(@Valid User user, Errors errors) {
-      if (errors.hasErrors()) {
-          return "user-create";
-      }
+    if (errors.hasErrors()) {
+      return "user-create";
+    }
     userService.saveUser(user);
-    return "redirect:/users";
+    return "redirect:/";
   }
 
   @GetMapping("/user-delete/{id}")
   public String deleteUser(@PathVariable("id") Long id) {
     userService.deleteById(id);
-    return "redirect:/users";
+    return "redirect:/";
   }
 
   @GetMapping("/user-update/{id}")
@@ -66,11 +66,11 @@ public class UserController {
 
   @PostMapping("/user-update")
   public String updateUser(@Valid User user, Errors errors) {
-      if (errors.hasErrors()) {
-          return "/user-update";
-      }
+    if (errors.hasErrors()) {
+      return "/user-update";
+    }
     userService.saveUser(user);
-    return "redirect:/users";
+    return "redirect:/";
   }
 
   @GetMapping("/user-books/{id}")
