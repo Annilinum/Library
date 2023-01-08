@@ -1,0 +1,220 @@
+.active-page {
+    text-decoration-line: underline;
+}
+
+body {
+    font-family: sans-serif;
+    background-color: rgba(175, 161, 148, 0.07);
+}
+
+h2 {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+table {
+    margin: auto;
+    text-align: center;
+    width: 60%;
+    border: 1px solid #dddddd;
+    border-collapse: collapse;
+    background: rgba(175, 161, 148, 0.11);
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+td {
+    border: 1px solid #dddddd;
+    padding: 5px;
+}
+
+.td-action {
+    width: 15%;
+}
+
+th {
+    font-weight: bold;
+    padding: 5px;
+    background: linear-gradient(rgba(225, 218, 210, 0.82), rgba(175, 161, 148, 0.82));
+    border: 1px solid #dddddd;
+}
+
+button {
+    background-color: rgba(175, 161, 148, 0.16);
+    font-family: sans-serif;
+    font-size: 15px;
+    margin: 0 auto;
+    display: block;
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+button:hover {
+    position: relative;
+    top: 1px;
+}
+
+.disabled-but {
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    margin: 0 20px;
+    font-size: 15px;
+    font-family: sans-serif;
+    transition: .3s ease-in-out;
+    color: #858585;
+}
+
+.input-but {
+    background-color: rgba(175, 161, 148, 0.16);
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    font-size: 15px;
+}
+
+.input-but:hover {
+    position: relative;
+    top: 1px;
+}
+
+input {
+    font-size: 15px;
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+select {
+    font-family: sans-serif;
+    font-size: 15px;
+    background-color: rgba(175, 161, 148, 0.16);
+    width: 50%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 0;
+    cursor: pointer;
+    border-right: 10px solid #edeae700;
+}
+
+option {
+    font-size: 15px;
+    background: rgba(225, 218, 210, 0.66);
+    cursor: pointer;
+}
+
+select.decorated option:checked {
+    box-shadow: 0 0 10px 100px #1882A8 inset;
+}
+
+a {
+    text-decoration: none;
+    display: inline-block;
+    padding: 5px 10px;
+    letter-spacing: 1px;
+    margin: 0 20px;
+    font-size: 15px;
+    font-family: sans-serif;
+    transition: .3s ease-in-out;
+    color: black;
+}
+
+a:hover {
+    position: relative;
+    top: 1px;
+}
+
+.update-form {
+    width: 350px;
+    height: 370px;
+    background: rgba(175, 161, 148, 0.16);
+    border-radius: 10px;
+    margin: 10% auto;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.update-form h2 {
+    background-color: rgba(175, 161, 148, 0.82);
+    border-radius: 10px 10px 0 0;
+    color: black;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.create-form {
+    width: 350px;
+    height: 325px;
+    background: rgba(175, 161, 148, 0.16);
+    border-radius: 10px;
+    margin: 10% auto;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.create-form h2 {
+    background-color: rgba(175, 161, 148, 0.82);
+    border-radius: 10px 10px 0 0;
+    color: black;
+    font-size: 20px;
+    padding: 20px;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.field {
+    border: none;
+    padding: 13px;
+    width: 260px;
+    border-radius: 5px;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+}
+
+.field-name {
+    padding: 0px 25px 25px;
+}
+
+p {
+    text-align: center;
+}
+
+.input-create {
+    background-color: rgba(175, 161, 148, 0.16);
+    padding: 10px;
+    border: 0;
+    box-shadow: 0 0 15px 4px rgba(0, 0, 0, 0.06);
+    margin-top: 10px;
+    font-size: 15px;
+}
+
+.input-create:hover {
+    position: relative;
+    top: 1px;
+}
+
+.ten a {
+    color: black;
+    border-radius: 25px;
+    border: 3px solid #E7E5DD;
+}
+
+.ten a:hover {
+    color: black;
+    background: rgba(175, 161, 148, 0.82);
+}
+
+.ten a span {
+    opacity: 0;
+    padding-left: 5px;
+    padding-right: 5px;
+    font-weight: bold;
+    transition: 0.4s ease-in-out;
+}
+
+.ten a:hover span {
+    opacity: 1;
+    padding-left: 10px;
+    padding-right: 10px;
+    color: black;
+}
