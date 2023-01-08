@@ -33,7 +33,7 @@ public class BookController {
     Page<Book> page = bookService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
     model.addAttribute("books", page.toList());
     pageableHelper.fillPageable(model, pageNumber, page.getTotalPages(), sortField, sortType);
-    return "/books";
+    return "books";
   }
 
   @GetMapping("/books/{bookId}")
