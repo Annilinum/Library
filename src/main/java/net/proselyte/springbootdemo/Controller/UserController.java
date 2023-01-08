@@ -78,6 +78,6 @@ public class UserController {
     model.addAttribute("books", userService.getBookByUserId(id));
     model.addAttribute("userId", id);
     model.addAttribute("freeBooks", bookService.findFreeBooks(id));
-    return "/html-user-books";
+    return "html-user-books";
   }
 }
