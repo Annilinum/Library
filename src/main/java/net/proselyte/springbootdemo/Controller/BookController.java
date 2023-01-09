@@ -72,7 +72,7 @@ public class BookController {
   public String updateBookForm(@PathVariable("id") Long id, Model model) {
     Book book = bookService.findById(id);
     model.addAttribute("book", book);
-    return "/book-update";
+    return "book-update";
   }
 
   @PostMapping("/book-update")
