@@ -50,7 +50,9 @@
     <table>
       <tr>
         <th>
-          <a th:href="@{/?pageNumber=__${prevPage}__&sortField=__${sortField}__&sortType=__${sortType}__}"><</a>
+          <a th:if="${pageNumber > 0}"
+             th:href="@{/?pageNumber=__${prevPage}__&sortField=__${sortField}__&sortType=__${sortType}__}">&lt;</a>
+          <div class="disabled-but" th:if="${pageNumber <= 0}">&lt;</div>
         </th>
         <th th:each="number : ${showedNumbers}">
           <a
