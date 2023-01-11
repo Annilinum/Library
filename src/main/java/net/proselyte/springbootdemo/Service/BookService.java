@@ -72,7 +72,7 @@ public class BookService {
     saveBook(book);
   }
 
-  public List<User> getReaderByBookId(Long bookId) {
+  public List<User> getReaderByBookId(long bookId) {
     return findById(bookId).getUsers();
   }
 }

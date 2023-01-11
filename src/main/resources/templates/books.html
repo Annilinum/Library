@@ -32,7 +32,7 @@
 
         <td th:text="${book.countLeft} +' '+ '('+${book.countTotal}+')'"></td>
         <td>
-          <a th:href="@{readers/{id}(id=${book.id})}">Смотреть(<span
+          <a th:href="@{/book/{bookId}/readers(bookId=${book.id})}">Смотреть(<span
               th:text="${book.getUsers().size()}"></span>)</a></td>
         <td>
           <a th:href="@{book-update/{id}(id=${book.id})}">Редактировать</a></td>
