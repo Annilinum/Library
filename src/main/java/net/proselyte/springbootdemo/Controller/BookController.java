@@ -1,6 +1,7 @@
 package net.proselyte.springbootdemo.Controller;
 
 import javax.validation.Valid;
+import lombok.AllArgsConstructor;
 import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Service.BookService;
 import org.springframework.data.domain.Page;
@@ -15,14 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@AllArgsConstructor
 public class BookController {
   private final BookService bookService;
   private final PageableHelper pageableHelper;
-
-  public BookController(BookService bookService, PageableHelper pageableHelper) {
-    this.bookService = bookService;
-    this.pageableHelper = pageableHelper;
-  }
 
   @GetMapping("/books")
   public String findAllBooks(Model model,
