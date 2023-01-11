@@ -7,7 +7,6 @@ import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Repository.UserRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,8 +23,7 @@ public class UserService {
     return findById(userId).getBooks();
   }
 
-  public Page<User> findAll(Integer pageNumber, String sortField, Sort.Direction sortDirection) {
-    PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
+  public Page<User> findAll(PageRequest pageRequest) {
     return userRepository.findAll(pageRequest);
   }
 

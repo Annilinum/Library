@@ -9,7 +9,6 @@ import net.proselyte.springbootdemo.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -23,8 +22,7 @@ public class BookService {
     this.userRepository = userRepository;
   }
 
-  public Page<Book> getBokksPage(Integer pageNumber, String sortField, Sort.Direction sortDirection) {
-    PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
+  public Page<Book> getBooksPage(PageRequest pageRequest) {
     return bookRepository.findAll(pageRequest);
   }
 

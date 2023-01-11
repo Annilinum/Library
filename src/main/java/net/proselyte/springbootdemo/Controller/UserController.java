@@ -5,7 +5,9 @@ import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Service.BookService;
 import net.proselyte.springbootdemo.Service.UserService;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -32,10 +34,10 @@ public class UserController {
       @RequestParam(value = "sortField", required = false, defaultValue = "id") String sortField,
       @RequestParam(value = "sortType", required = false) String sortType) {
 
-    sortType = sortType == null ? String.valueOf(Sort.Direction.ASC) : sortType;
-    Page<User> page = userService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
-
-    pageableHelper.fillPageable(model, page, pageNumber, sortField, sortType);
+    Direction sortDirection = sortType == null ? Direction.ASC : Direction.fromString(sortType);
+    PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
+    Page<User> page = userService.findAll(pageRequest);
+    pageableHelper.fillPageable(model, page, sortField, sortDirection);
     return "user-list";
   }
 
