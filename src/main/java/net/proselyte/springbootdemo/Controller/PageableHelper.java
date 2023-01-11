@@ -1,13 +1,13 @@
 package net.proselyte.springbootdemo.Controller;
 
+import java.util.List;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
-
-import java.util.List;
 
 @Component
 public class PageableHelper {
     public void fillPageable(Model model, Integer pageNumber, int totalPages, String sortField, String sortType) {
+
         int prevPage = Math.max(pageNumber - 1, 0);
         int nextPage = Math.min(pageNumber + 1, totalPages);
         model.addAttribute("prevPage", prevPage);

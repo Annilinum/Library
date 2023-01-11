@@ -28,9 +28,11 @@ public class UserController {
 
   @GetMapping("/")
   public String findAll(Model model,
-      @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
+      @RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
       @RequestParam(value = "sortField", required = false, defaultValue = "id") String sortField,
-      @RequestParam(value = "sortType", required = false, defaultValue = "ASC") String sortType) {
+      @RequestParam(value = "sortType", required = false) String sortType) {
+
+    sortType = sortType == null ? String.valueOf(Sort.Direction.ASC) : sortType;
     Page<User> users = userService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
     model.addAttribute("users", users.toList());
     pageableHelper.fillPageable(model, pageNumber, users.getTotalPages(), sortField, sortType);

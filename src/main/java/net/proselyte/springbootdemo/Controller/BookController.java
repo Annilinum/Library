@@ -9,6 +9,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -34,20 +35,20 @@ public class BookController {
     return "books";
   }
 
-  @GetMapping("/books/{bookId}")
-  public String deleteBook(@PathVariable("bookId") Long bookId) {
+  @DeleteMapping("/book/{bookId}")
+  public String deleteBook(@PathVariable("bookId") long bookId) {
     bookService.deleteBook(bookId);
     return "redirect:/books";
   }
 
   @GetMapping("/book-delete/{userId}/{id}")
-  public String deleteUserFromBook(@PathVariable("id") Long bookId, @PathVariable("userId") Long userId) {
+  public String deleteUserFromBook(@PathVariable("id") long bookId, @PathVariable("userId") Long userId) {
     bookService.deleteUserFromBook(bookId, userId);
     return "redirect:/user-books/" + userId;
   }
 
   @PostMapping("/issue-book")
-  public String issueBook(Long bookId, Long userId) {
+  public String issueBook(long bookId, long userId) {
     bookService.issueBook(bookId, userId);
     return "redirect:/user-books/" + userId;
   }
@@ -67,7 +68,7 @@ public class BookController {
   }
 
   @GetMapping("/book-update/{id}")
-  public String updateBookForm(@PathVariable("id") Long id, Model model) {
+  public String updateBookForm(@PathVariable("id") long id, Model model) {
     Book book = bookService.findById(id);
     model.addAttribute("book", book);
     return "book-update";
@@ -81,7 +82,7 @@ public class BookController {
   }
 
   @GetMapping("/readers/{id}")
-  public String getReader(@PathVariable("id") Long id, Model model) {
+  public String getReader(@PathVariable("id") long id, Model model) {
     model.addAttribute("readers", bookService.getReaderByBookId(id));
     model.addAttribute("bookId", id);
     return "readers";
