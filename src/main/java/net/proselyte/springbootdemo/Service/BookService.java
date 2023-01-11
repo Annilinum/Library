@@ -23,7 +23,7 @@ public class BookService {
     this.userRepository = userRepository;
   }
 
-  public Page<Book> findAll(Integer pageNumber, String sortField, Sort.Direction sortDirection) {
+  public Page<Book> getBokksPage(Integer pageNumber, String sortField, Sort.Direction sortDirection) {
     PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
     return bookRepository.findAll(pageRequest);
   }

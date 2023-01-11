@@ -29,7 +29,7 @@ public class BookController {
       @RequestParam(value = "sortType", required = false) String sortType) {
 
     sortType = sortType == null ? String.valueOf(Sort.Direction.ASC) : sortType;
-    Page<Book> page = bookService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
+    Page<Book> page = bookService.getBokksPage(pageNumber, sortField, Sort.Direction.fromString(sortType));
     model.addAttribute("books", page.toList());
     pageableHelper.fillPageable(model, pageNumber, page.getTotalPages(), sortField, sortType);
     return "books";
