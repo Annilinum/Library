@@ -23,10 +23,11 @@ public class BookController {
 
   @GetMapping("/books")
   public String getBooks(Model model,
-      @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
+      @RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
       @RequestParam(value = "sortField", required = false, defaultValue = "title") String sortField,
-      @RequestParam(value = "sortType", required = false, defaultValue = "ASC") String sortType) {
+      @RequestParam(value = "sortType", required = false) String sortType) {
 
+    sortType = sortType == null ? String.valueOf(Sort.Direction.ASC) : sortType;
     Page<Book> page = bookService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
     model.addAttribute("books", page.toList());
     pageableHelper.fillPageable(model, pageNumber, page.getTotalPages(), sortField, sortType);
