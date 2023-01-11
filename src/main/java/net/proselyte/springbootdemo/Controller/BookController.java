@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @AllArgsConstructor
 public class BookController {
   private final BookService bookService;
-  private final PageableHelper pageableHelper;
+  private final PageableHelper<Book> pageableHelper;
 
   @GetMapping("/books")
   public String getBooks(Model model,
@@ -29,8 +29,8 @@ public class BookController {
 
     sortType = sortType == null ? String.valueOf(Sort.Direction.ASC) : sortType;
     Page<Book> page = bookService.getBokksPage(pageNumber, sortField, Sort.Direction.fromString(sortType));
-    model.addAttribute("books", page.toList());
-    pageableHelper.fillPageable(model, pageNumber, page.getTotalPages(), sortField, sortType);
+
+    pageableHelper.fillPageable(model, page, pageNumber, sortField, sortType);
     return "books.html";
   }
 

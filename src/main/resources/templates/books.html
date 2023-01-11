@@ -6,7 +6,7 @@
   <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
-<div th:switch="${books}">
+<div th:switch="${rowsData}">
   <h2 th:case="null">No books found!</h2>
   <div th:case="*">
     <h2>Библиотека</h2>
@@ -26,7 +26,7 @@
       <tr></tr>
       </thead>
       <tbody>
-      <tr th:each="book : ${books}">
+      <tr th:each="book : ${rowsData}">
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
 

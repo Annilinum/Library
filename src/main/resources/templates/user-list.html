@@ -6,7 +6,7 @@
   <link rel="stylesheet" th:href="@{mysite.css}">
 </head>
 <body>
-<div th:switch="${users}">
+<div th:switch="${rowsData}">
   <h2 th:case="null">No users found!</h2>
   <div th:case="*">
     <h2>Пользователи</h2>
@@ -27,7 +27,7 @@
       </tr>
       </thead>
       <tbody>
-      <tr th:each="user : ${users}">
+      <tr th:each="user : ${rowsData}">
         <td th:text="${user.id}"></td>
         <td th:text="${user.firstName}"></td>
         <td th:text="${user.lastName}"></td>

@@ -18,7 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class UserController {
   private final UserService userService;
   private final BookService bookService;
-  private final PageableHelper pageableHelper;
+  private final PageableHelper<User> pageableHelper;
 
   public UserController(UserService userService, BookService bookService, PageableHelper pageableHelper) {
     this.userService = userService;
@@ -33,9 +33,9 @@ public class UserController {
       @RequestParam(value = "sortType", required = false) String sortType) {
 
     sortType = sortType == null ? String.valueOf(Sort.Direction.ASC) : sortType;
-    Page<User> users = userService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
-    model.addAttribute("users", users.toList());
-    pageableHelper.fillPageable(model, pageNumber, users.getTotalPages(), sortField, sortType);
+    Page<User> page = userService.findAll(pageNumber, sortField, Sort.Direction.fromString(sortType));
+
+    pageableHelper.fillPageable(model, page, pageNumber, sortField, sortType);
     return "user-list";
   }
 
