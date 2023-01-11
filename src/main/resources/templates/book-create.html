@@ -8,7 +8,7 @@
 <body>
 <div class="create-form">
   <h2>Создать новую книгу</h2>
-  <form action="#" th:action="@{/create-new-book}" th:object="${newBook}" method="post">
+  <form action="#" th:action="@{/book/create}" th:object="${newBook}" method="post">
     <div class="field-name">
       <label class="field-name" for="title"><br>Название</label>
       <input class="field" type="text" th:field="*{title}" id="title" placeholder="Введите название">

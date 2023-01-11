@@ -52,7 +52,7 @@ public class BookController {
     return "redirect:/user-books/" + userId;
   }
 
-  @GetMapping("/create-new-book")
+  @GetMapping("/book/create")
   public String createBookForm(@ModelAttribute(name = "newBook") CreateBookRequest newBook) {
     return "book-create";
   }
