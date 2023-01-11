@@ -55,7 +55,7 @@ public class BookService {
     saveBook(book);
   }
 
-  public void issueBook(Long bookId, Long userId) {
+  public void issueBook(long bookId, long userId) {
     User user = userRepository.getReferenceById(userId);
     Book book = bookRepository.getOne(bookId);
     book.getUsers().add(user);

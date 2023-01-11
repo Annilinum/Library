@@ -46,7 +46,7 @@ public class BookController {
     return "redirect:/user-books/" + userId;
   }
 
-  @PostMapping("/issue-book")
+  @PostMapping("/book/issue")
   public String issueBook(long bookId, long userId) {
     bookService.issueBook(bookId, userId);
     return "redirect:/user-books/" + userId;
