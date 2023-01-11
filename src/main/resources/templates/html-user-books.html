@@ -36,7 +36,7 @@
       <tr th:each="book : ${books}">
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
-        <td><a th:href="@{/book-delete/{userId}/{id}(userId=${userId},id=${book.id})}">Удалить</a></td>
+        <td><a th:href="@{/book/{userId}/{bookId}(userId=${userId},bookId=${book.id})}">Удалить</a></td>
       </tr>
       </tbody>
     </table>

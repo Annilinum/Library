@@ -33,8 +33,8 @@ public class UserService {
     userRepository.save(user);
   }
 
-  public void deleteById(Long id) {
-    getBookByUserId(id).forEach(book -> bookService.deleteUserFromBook(book.getId(), id));
-    userRepository.deleteById(id);
+  public void deleteById(long userId) {
+    getBookByUserId(userId).forEach(book -> bookService.getBookBack(book.getId(), userId));
+    userRepository.deleteById(userId);
   }
 }

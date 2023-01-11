@@ -31,7 +31,7 @@ public class BookController {
     Page<Book> page = bookService.getBokksPage(pageNumber, sortField, Sort.Direction.fromString(sortType));
     model.addAttribute("books", page.toList());
     pageableHelper.fillPageable(model, pageNumber, page.getTotalPages(), sortField, sortType);
-    return "books";
+    return "books.html";
   }
 
   @GetMapping("/book/{bookId}")
@@ -40,9 +40,9 @@ public class BookController {
     return "redirect:/books";
   }
 
-  @GetMapping("/book-delete/{userId}/{id}")
-  public String deleteUserFromBook(@PathVariable("id") long bookId, @PathVariable("userId") Long userId) {
-    bookService.deleteUserFromBook(bookId, userId);
+  @GetMapping("/book/{userId}/{bookId}")
+  public String getBookBack(@PathVariable("bookId") long bookId, @PathVariable("userId") long userId) {
+    bookService.getBookBack(bookId, userId);
     return "redirect:/user-books/" + userId;
   }
 

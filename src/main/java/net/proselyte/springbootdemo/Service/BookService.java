@@ -48,7 +48,7 @@ public class BookService {
     bookRepository.deleteById(id);
   }
 
-  public void deleteUserFromBook(Long bookId, Long userId) {
+  public void getBookBack(long bookId, long userId) {
     Book book = bookRepository.getOne(bookId);
     book.getUsers().remove(userRepository.getById(userId));
     book.setCountLeft(book.getCountLeft() + 1);
