@@ -22,7 +22,7 @@ public class BookController {
   private final PageableHelper pageableHelper;
 
   @GetMapping("/books")
-  public String findAllBooks(Model model,
+  public String getBooks(Model model,
       @RequestParam(value = "pageNumber", required = false, defaultValue = "0") Integer pageNumber,
       @RequestParam(value = "sortField", required = false, defaultValue = "title") String sortField,
       @RequestParam(value = "sortType", required = false, defaultValue = "ASC") String sortType) {
