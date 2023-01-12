@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Пользователи</title>
-  <link rel="stylesheet" th:href="@{mysite.css}">
+  <link rel="stylesheet" th:href="@{/mysite.css}">
 </head>
 <body>
 <div th:switch="${rowsData}">
@@ -36,10 +36,10 @@
               th:text="${user.getBooks().size()}"></span>)</a>
         </td>
         <td>
-          <a th:href="@{user-update/{id}(id=${user.id})}">Редактировать</a>
+          <a th:href="@{user/{id}/update(id=${user.id})}">Редактировать</a>
         </td>
         <td>
-          <a th:href="@{user-delete/{id}(id=${user.id})}">Удалить</a>
+          <a th:href="@{user/{id}/delete(id=${user.id})}">Удалить</a>
         </td>
 
 

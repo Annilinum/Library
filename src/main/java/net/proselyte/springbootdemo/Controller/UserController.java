@@ -44,27 +44,25 @@ public class UserController {
 
   @PostMapping("/user/create")
   public String createUser(@Valid User user, Errors errors) {
-    if (errors.hasErrors()) {
-      return "user-create.html";
-    }
+    if (errors.hasErrors()) return "user-create.html";
     userService.saveUser(user);
     return "redirect:/";
   }
 
-  @GetMapping("/user-delete/{id}")
-  public String deleteUser(@PathVariable("id") Long id) {
-    userService.deleteById(id);
+  @GetMapping("/user/{userId}/delete")
+  public String deleteUser(@PathVariable("userId") long userId) {
+    userService.deleteById(userId);
     return "redirect:/";
   }
 
-  @GetMapping("/user-update/{id}")
-  public String updateUserForm(@PathVariable("id") Long id, Model model) {
-    User user = userService.findById(id);
+  @GetMapping("/user/{userId}/update")
+  public String updateUserForm(@PathVariable("userId") long userId, Model model) {
+    User user = userService.findById(userId);
     model.addAttribute("user", user);
     return "user-update.html";
   }
 
-  @PostMapping("/user-update")
+  @PostMapping("/user/update")
   public String updateUser(@Valid User user, Errors errors) {
     if (errors.hasErrors()) {
       return "user-update.html";
