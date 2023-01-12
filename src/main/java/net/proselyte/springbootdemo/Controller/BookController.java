@@ -56,28 +56,28 @@ public class BookController {
 
   @GetMapping("/book/create")
   public String createBookForm(@ModelAttribute(name = "newBook") CreateBookRequest newBook) {
-    return "book-create";
+    return "book-create.html";
   }
 
-  @PostMapping("/create-new-book")
+  @PostMapping("/book/create")
   public String createBook(@Valid @ModelAttribute(name = "newBook") CreateBookRequest newBook, Errors errors) {
     if (errors.hasErrors()) {
-      return "book-create";
+      return "book-create.html";
     }
     bookService.createNewBook(newBook.getTitle(), newBook.getAuthor(), newBook.getCountBook());
     return "redirect:/books";
   }
 
-  @GetMapping("/book-update/{id}")
-  public String updateBookForm(@PathVariable("id") long id, Model model) {
-    Book book = bookService.findById(id);
+  @GetMapping("/book/{bookId}/update")
+  public String updateBookForm(@PathVariable("bookId") long bookId, Model model) {
+    Book book = bookService.findById(bookId);
     model.addAttribute("book", book);
-    return "book-update";
+    return "book-update.html";
   }
 
-  @PostMapping("/book-update")
+  @PostMapping("/book/update")
   public String updateBook(@Valid Book book, Errors errors) {
-    if (errors.hasErrors()) return "/book-update";
+    if (errors.hasErrors()) return "/book/update";
     bookService.saveBook(book);
     return "redirect:/books";
   }
@@ -86,6 +86,6 @@ public class BookController {
   public String getReader(@PathVariable("bookId") long bookId, Model model) {
     model.addAttribute("readers", bookService.getReaderByBookId(bookId));
     model.addAttribute("bookId", bookId);
-    return "readers";
+    return "readers.html";
   }
 }

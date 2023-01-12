@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Библиотека</title>
-  <link rel="stylesheet" th:href="@{mysite.css}">
+  <link rel="stylesheet" th:href="@{/mysite.css}">
 </head>
 <body>
 <div th:switch="${rowsData}">
@@ -35,7 +35,7 @@
           <a th:href="@{/book/{bookId}/readers(bookId=${book.id})}">Смотреть(<span
               th:text="${book.getUsers().size()}"></span>)</a></td>
         <td>
-          <a th:href="@{book-update/{id}(id=${book.id})}">Редактировать</a></td>
+          <a th:href="@{book/{bookId}/update(bookId=${book.id})}">Редактировать</a></td>
         <td class="td-action"><a th:href="@{/book/{bookId}(bookId=${book.id})}">Удалить</a></td>
       </tr>
       </tbody>
