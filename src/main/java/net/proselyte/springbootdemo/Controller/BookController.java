@@ -45,13 +45,13 @@ public class BookController {
   @GetMapping("/book/{userId}/{bookId}")
   public String getBookBack(@PathVariable("bookId") long bookId, @PathVariable("userId") long userId) {
     bookService.getBookBack(bookId, userId);
-    return "redirect:/user-books/" + userId;
+    return "redirect:/user/" + userId + "/books";
   }
 
   @PostMapping("/book/issue")
   public String issueBook(long bookId, long userId) {
     bookService.issueBook(bookId, userId);
-    return "redirect:/user-books/" + userId;
+    return "redirect:/user/" + userId + "/books";
   }
 
   @GetMapping("/book/create")

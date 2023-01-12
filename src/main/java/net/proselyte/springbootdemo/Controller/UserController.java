@@ -64,18 +64,16 @@ public class UserController {
 
   @PostMapping("/user/update")
   public String updateUser(@Valid User user, Errors errors) {
-    if (errors.hasErrors()) {
-      return "user-update.html";
-    }
+    if (errors.hasErrors()) return "user-update.html";
     userService.saveUser(user);
     return "redirect:/";
   }
 
-  @GetMapping("/user-books/{id}")
-  public String getUserBooks(@PathVariable("id") Long id, Model model) {
-    model.addAttribute("books", userService.getBookByUserId(id));
-    model.addAttribute("userId", id);
-    model.addAttribute("freeBooks", bookService.findFreeBooks(id));
+  @GetMapping("/user/{userId}/books")
+  public String getUserBooks(@PathVariable("userId") Long userId, Model model) {
+    model.addAttribute("books", userService.getBookByUserId(userId));
+    model.addAttribute("userId", userId);
+    model.addAttribute("freeBooks", bookService.findFreeBooks(userId));
     return "html-user-books";
   }
 }

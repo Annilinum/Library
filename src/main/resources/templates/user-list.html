@@ -32,7 +32,7 @@
         <td th:text="${user.firstName}"></td>
         <td th:text="${user.lastName}"></td>
         <td>
-          <a th:href="@{user-books/{id}(id=${user.id})}">Смотреть (<span
+          <a th:href="@{user/{userId}/books(userId=${user.id})}">Смотреть (<span
               th:text="${user.getBooks().size()}"></span>)</a>
         </td>
         <td>
