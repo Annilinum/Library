@@ -1,6 +1,7 @@
 package net.proselyte.springbootdemo.Controller;
 
 import javax.validation.Valid;
+import lombok.AllArgsConstructor;
 import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Service.BookService;
 import net.proselyte.springbootdemo.Service.UserService;
@@ -17,19 +18,14 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
+@AllArgsConstructor
 public class UserController {
   private final UserService userService;
   private final BookService bookService;
   private final PageableHelper<User> pageableHelper;
 
-  public UserController(UserService userService, BookService bookService, PageableHelper pageableHelper) {
-    this.userService = userService;
-    this.bookService = bookService;
-    this.pageableHelper = pageableHelper;
-  }
-
   @GetMapping("/")
-  public String findAll(Model model,
+  public String getUsers(Model model,
       @RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
       @RequestParam(value = "sortField", required = false, defaultValue = "id") String sortField,
       @RequestParam(value = "sortType", required = false) String sortType) {
@@ -38,18 +34,18 @@ public class UserController {
     PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
     Page<User> page = userService.findAll(pageRequest);
     pageableHelper.fillPageable(model, page, sortField, sortDirection);
-    return "user-list";
+    return "user-list.html";
   }
 
-  @GetMapping("/user-create")
+  @GetMapping("/user/create")
   public String createUserForm(User user) {
-    return "user-create";
+    return "user-create.html";
   }
 
-  @PostMapping("/user-create")
+  @PostMapping("/user/create")
   public String createUser(@Valid User user, Errors errors) {
     if (errors.hasErrors()) {
-      return "user-create";
+      return "user-create.html";
     }
     userService.saveUser(user);
     return "redirect:/";
@@ -65,13 +61,13 @@ public class UserController {
   public String updateUserForm(@PathVariable("id") Long id, Model model) {
     User user = userService.findById(id);
     model.addAttribute("user", user);
-    return "user-update";
+    return "user-update.html";
   }
 
   @PostMapping("/user-update")
   public String updateUser(@Valid User user, Errors errors) {
     if (errors.hasErrors()) {
-      return "user-update";
+      return "user-update.html";
     }
     userService.saveUser(user);
     return "redirect:/";
