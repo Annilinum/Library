@@ -15,15 +15,15 @@ public class UserService {
   private final UserRepository userRepository;
   private final BookService bookService;
 
-  public User findById(Long id) {
-    return userRepository.getOne(id);
+  public User findById(long userId) {
+    return userRepository.getOne(userId);
   }
 
-  public List<Book> getBookByUserId(Long userId) {
+  public List<Book> getBookByUserId(long userId) {
     return findById(userId).getBooks();
   }
 
-  public Page<User> findAll(PageRequest pageRequest) {
+  public Page<User> getUsersPage(PageRequest pageRequest) {
     return userRepository.findAll(pageRequest);
   }
 

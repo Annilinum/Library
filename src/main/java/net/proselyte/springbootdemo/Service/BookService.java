@@ -26,8 +26,8 @@ public class BookService {
     return bookRepository.findAll(pageRequest);
   }
 
-  public Book findById(long id) {
-    return bookRepository.getOne(id);
+  public Book findById(long bookId) {
+    return bookRepository.getOne(bookId);
   }
 
   public List<Book> findFreeBooks(long excludeUserId) {
@@ -42,8 +42,8 @@ public class BookService {
     bookRepository.save(book);
   }
 
-  public void deleteBook(Long id) {
-    bookRepository.deleteById(id);
+  public void deleteBook(long bookId) {
+    bookRepository.deleteById(bookId);
   }
 
   public void getBookBack(long bookId, long userId) {

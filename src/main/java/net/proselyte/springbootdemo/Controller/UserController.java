@@ -32,7 +32,7 @@ public class UserController {
 
     Direction sortDirection = sortType == null ? Direction.ASC : Direction.fromString(sortType);
     PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
-    Page<User> page = userService.findAll(pageRequest);
+    Page<User> page = userService.getUsersPage(pageRequest);
     pageableHelper.fillPageable(model, page, sortField, sortDirection);
     return "user-list.html";
   }
@@ -70,7 +70,7 @@ public class UserController {
   }
 
   @GetMapping("/user/{userId}/books")
-  public String getUserBooks(@PathVariable("userId") Long userId, Model model) {
+  public String getUserBooks(@PathVariable("userId") long userId, Model model) {
     model.addAttribute("books", userService.getBookByUserId(userId));
     model.addAttribute("userId", userId);
     model.addAttribute("freeBooks", bookService.findFreeBooks(userId));
