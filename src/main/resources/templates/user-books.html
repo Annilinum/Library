@@ -10,7 +10,9 @@
   <h2 th:case="null">No books found!</h2>
   <div th:case="*">
     <h2>Книги пользователя</h2>
-    <form style="text-align: center" action="#" th:action="@{/book/issue}" method="post">
+    <form style="text-align: center" action="#"
+          th:action="@{user/{userId}/issue-book(userId=${userId})}"
+          method="post">
       <label>
         <select name="bookId">
           <option value="" selected>Выбрать книгу</option>
@@ -36,7 +38,7 @@
       <tr th:each="book : ${books}">
         <td th:text="${book.title}"></td>
         <td th:text="${book.author}"></td>
-        <td><a th:href="@{/book/{userId}/{bookId}(userId=${userId},bookId=${book.id})}">Удалить</a></td>
+        <td><a th:href="@{/user/{userId}/return-book/{bookId}(userId=${userId},bookId=${book.id})}">Удалить</a></td>
       </tr>
       </tbody>
     </table>
