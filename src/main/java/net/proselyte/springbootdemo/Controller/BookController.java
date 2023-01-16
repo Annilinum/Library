@@ -24,7 +24,7 @@ public class BookController {
   private final PageableHelper<Book> pageableHelper;
 
   @GetMapping("/books")
-  public String getBooks(Model model,
+  public String getBooksTable(Model model,
       @RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
       @RequestParam(value = "sortField", required = false, defaultValue = "title") String sortField,
       @RequestParam(value = "sortType", required = false) String sortType) {
@@ -40,12 +40,6 @@ public class BookController {
   public String deleteBook(@PathVariable("bookId") long bookId) {
     bookService.deleteBook(bookId);
     return "redirect:/books";
-  }
-
-  @GetMapping("/book/{userId}/{bookId}")
-  public String getBookBack(@PathVariable("bookId") long bookId, @PathVariable("userId") long userId) {
-    bookService.getBookBack(bookId, userId);
-    return "redirect:/user/" + userId + "/books";
   }
 
   @PostMapping("/book/issue")

@@ -74,6 +74,12 @@ public class UserController {
     model.addAttribute("books", userService.getBookByUserId(userId));
     model.addAttribute("userId", userId);
     model.addAttribute("freeBooks", bookService.findFreeBooks(userId));
-    return "html-user-books";
+    return "user-books.html";
+  }
+
+  @GetMapping("/user/{userId}/return-book/{bookId}")
+  public String returnBook(@PathVariable("bookId") long bookId, @PathVariable("userId") long userId) {
+    bookService.returnBook(bookId, userId);
+    return "redirect:/user/" + userId + "/books";
   }
 }

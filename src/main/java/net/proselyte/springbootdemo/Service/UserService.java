@@ -32,7 +32,7 @@ public class UserService {
   }
 
   public void deleteById(long userId) {
-    getBookByUserId(userId).forEach(book -> bookService.getBookBack(book.getId(), userId));
+    getBookByUserId(userId).forEach(book -> bookService.returnBook(book.getId(), userId));
     userRepository.deleteById(userId);
   }
 }
