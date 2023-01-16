@@ -11,7 +11,6 @@ public class CreateBookRequest {
   private String author;
   @NotEmpty(message = "Поле не может быть пустым")
   private String title;
-
   private int countBook;
 
   @Override public String toString() {

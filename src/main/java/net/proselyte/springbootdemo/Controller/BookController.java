@@ -32,7 +32,7 @@ public class BookController {
     Direction sortDirection = sortType == null ? Direction.ASC : Direction.fromString(sortType);
     PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
     Page<Book> page = bookService.getBooksPage(pageRequest);
-    pageableHelper.fillPageable(model, page, sortField, sortDirection);
+    pageableHelper.fillModel(model, page, sortField, sortDirection);
     return "books.html";
   }
 
@@ -40,12 +40,6 @@ public class BookController {
   public String deleteBook(@PathVariable("bookId") long bookId) {
     bookService.deleteBook(bookId);
     return "redirect:/books";
-  }
-
-  @PostMapping("/book/issue")
-  public String issueBook(long bookId, long userId) {
-    bookService.issueBook(bookId, userId);
-    return "redirect:/user/" + userId + "/books";
   }
 
   @GetMapping("/book/create")
@@ -63,7 +57,7 @@ public class BookController {
   }
 
   @GetMapping("/book/{bookId}/update")
-  public String updateBookForm(@PathVariable("bookId") long bookId, Model model) {
+  public String getUpdateBookForm(@PathVariable("bookId") long bookId, Model model) {
     Book book = bookService.findById(bookId);
     model.addAttribute("book", book);
     return "book-update.html";

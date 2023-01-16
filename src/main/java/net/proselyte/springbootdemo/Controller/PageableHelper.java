@@ -8,7 +8,7 @@ import org.springframework.ui.Model;
 
 @Component
 public class PageableHelper<T> {
-  public void fillPageable(Model model, Page<T> page, String sortField,
+  public void fillModel(Model model, Page<T> page, String sortField,
       Direction sortType) {
     int totalPages = page.getTotalPages();
     int pageNumber = page.getNumber();

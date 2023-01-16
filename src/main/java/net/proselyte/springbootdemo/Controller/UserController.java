@@ -33,7 +33,7 @@ public class UserController {
     Direction sortDirection = sortType == null ? Direction.ASC : Direction.fromString(sortType);
     PageRequest pageRequest = PageRequest.of(pageNumber, 10, Sort.by(sortDirection, sortField));
     Page<User> page = userService.getUsersPage(pageRequest);
-    pageableHelper.fillPageable(model, page, sortField, sortDirection);
+    pageableHelper.fillModel(model, page, sortField, sortDirection);
     return "user-list.html";
   }
 
@@ -80,6 +80,12 @@ public class UserController {
   @GetMapping("/user/{userId}/return-book/{bookId}")
   public String returnBook(@PathVariable("bookId") long bookId, @PathVariable("userId") long userId) {
     bookService.returnBook(bookId, userId);
+    return "redirect:/user/" + userId + "/books";
+  }
+
+  @PostMapping("/user/{userId}/issue-book/{bookId}")
+  public String issueBook(@PathVariable("bookId") long bookId, @PathVariable("userId") long userId) {
+    bookService.issueBook(bookId, userId);
     return "redirect:/user/" + userId + "/books";
   }
 }
