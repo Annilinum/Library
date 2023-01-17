@@ -2,25 +2,20 @@ package net.proselyte.springbootdemo.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import lombok.AllArgsConstructor;
 import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Model.User;
 import net.proselyte.springbootdemo.Repository.BookRepository;
 import net.proselyte.springbootdemo.Repository.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 @Service
+@AllArgsConstructor
 public class BookService {
   private final BookRepository bookRepository;
   private final UserRepository userRepository;
-
-  @Autowired
-  public BookService(BookRepository bookRepository, UserRepository userRepository) {
-    this.bookRepository = bookRepository;
-    this.userRepository = userRepository;
-  }
 
   public Page<Book> getBooksPage(PageRequest pageRequest) {
     return bookRepository.findAll(pageRequest);

@@ -1,6 +1,7 @@
 package net.proselyte.springbootdemo.Service;
 
 import java.util.List;
+import javax.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import net.proselyte.springbootdemo.Model.Book;
 import net.proselyte.springbootdemo.Model.User;
@@ -31,6 +32,7 @@ public class UserService {
     userRepository.save(user);
   }
 
+  @Transactional
   public void deleteById(long userId) {
     getBookByUserId(userId).forEach(book -> bookService.returnBook(book.getId(), userId));
     userRepository.deleteById(userId);
