@@ -17,7 +17,7 @@ public class UserService {
   private final BookService bookService;
 
   public User findById(long userId) {
-    return userRepository.getOne(userId);
+    return userRepository.findById(userId).orElseThrow();
   }
 
   public List<Book> getBookByUserId(long userId) {

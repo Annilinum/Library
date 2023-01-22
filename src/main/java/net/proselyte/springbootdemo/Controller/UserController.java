@@ -25,7 +25,7 @@ public class UserController {
   private final PageableHelper<User> pageableHelper;
 
   @GetMapping("/")
-  public String getUsers(Model model,
+  public String getUsersTable(Model model,
       @RequestParam(value = "pageNumber", required = false, defaultValue = "0") int pageNumber,
       @RequestParam(value = "sortField", required = false, defaultValue = "id") String sortField,
       @RequestParam(value = "sortType", required = false) String sortType) {
@@ -70,7 +70,7 @@ public class UserController {
   }
 
   @GetMapping("/user/{userId}/books")
-  public String getUserBooks(@PathVariable("userId") long userId, Model model) {
+  public String getUserBooksTable(@PathVariable("userId") long userId, Model model) {
     model.addAttribute("books", userService.getBookByUserId(userId));
     model.addAttribute("userId", userId);
     model.addAttribute("freeBooks", bookService.findFreeBooks(userId));

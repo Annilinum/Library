@@ -71,7 +71,7 @@ public class BookController {
   }
 
   @GetMapping("/book/{bookId}/readers")
-  public String getReader(@PathVariable("bookId") long bookId, Model model) {
+  public String getReadersTable(@PathVariable("bookId") long bookId, Model model) {
     model.addAttribute("readers", bookService.getReaderByBookId(bookId));
     model.addAttribute("bookId", bookId);
     return "readers.html";

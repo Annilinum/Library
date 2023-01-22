@@ -22,7 +22,7 @@ public class BookService {
   }
 
   public Book findById(long bookId) {
-    return bookRepository.getOne(bookId);
+    return bookRepository.findById(bookId).orElseThrow();
   }
 
   public List<Book> findFreeBooks(long excludeUserId) {
@@ -42,15 +42,15 @@ public class BookService {
   }
 
   public void returnBook(long bookId, long userId) {
-    Book book = bookRepository.getReferenceById(bookId);
-    book.getUsers().remove(userRepository.getReferenceById(userId));
+    Book book = bookRepository.findById(bookId).orElseThrow();
+    book.getUsers().remove(userRepository.findById(userId).orElseThrow());
     book.setCountLeft(book.getCountLeft() + 1);
     saveBook(book);
   }
 
   public void issueBook(long bookId, long userId) {
-    User user = userRepository.getReferenceById(userId);
-    Book book = bookRepository.getReferenceById(bookId);
+    User user = userRepository.findById(userId).orElseThrow();
+    Book book = bookRepository.findById(bookId).orElseThrow();
     book.getUsers().add(user);
     book.setCountLeft(book.getCountLeft() - 1);
     saveBook(book);
